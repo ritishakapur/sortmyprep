@@ -1,0 +1,4200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SortMyPrep — Clarity in the Chaos</title>
+  <style>
+    /* ════════════════════════════════════════════════════════════
+   MASTER RESET & HIGH-PERFORMANCE UTILITIES
+════════════════════════════════════════════════════════════ */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f0f4f8;
+      min-height: 100vh;
+      color: #111;
+    }
+
+    /* ── TOPBAR (identical to P1) ── */
+    .topbar {
+      background: #0B1D35;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+
+    .logo span {
+      color: #4BA3E3;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    .tnav {
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .tnav:hover {
+      color: #fff;
+    }
+
+    .tnav.on {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .streak-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FF6B2B;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #4BA3E3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0B1D35;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ── PAGE SYSTEM ── */
+    .page {
+      display: none;
+      padding: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .page.on {
+      display: block;
+    }
+
+    .page-header {
+      margin-bottom: 20px;
+    }
+
+    .page-header h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .page-header p {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    /* ── SHARED CARD (identical to P1) ── */
+    .card {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .card-sub-title {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    .text-link {
+      font-size: 12px;
+      color: #185FA5;
+      cursor: pointer;
+      font-weight: 500;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    .divider {
+      height: 1px;
+      background: #f3f4f6;
+      margin: 14px 0;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-dark {
+      background: #0B1D35;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.15s;
+    }
+
+    .btn-dark:hover {
+      opacity: 0.85;
+    }
+
+    .btn-accent {
+      background: #4BA3E3;
+      color: #0B1D35;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.15s;
+    }
+
+    .btn-accent:hover {
+      opacity: 0.88;
+    }
+
+    .btn-outline {
+      font-size: 12px;
+      padding: 6px 14px;
+      background: transparent;
+      color: #374151;
+      border: 1px solid #e0e4ea;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.12s;
+    }
+
+    .btn-outline:hover {
+      background: #f9fafb;
+    }
+
+    .btn-full {
+      width: 100%;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.15s;
+      border: none;
+    }
+
+    .btn-full:hover {
+      opacity: 0.88;
+    }
+
+    /* ── TAGS / BADGES ── */
+    .tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .tag-green {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .tag-blue {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .tag-orange {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+
+    .tag-red {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .tag-gray {
+      background: #f3f4f6;
+      color: #4b5563;
+      border: 0.5px solid #e0e4ea;
+    }
+
+    .tag-yellow {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .tag-purple {
+      background: #f3e8ff;
+      color: #6b21a8;
+    }
+
+    /* ── DASHBOARD ── */
+    .welcome-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .welcome-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .welcome-text p {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .streak-count-big {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FF6B2B;
+    }
+
+    /* Calendar */
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .cal-label {
+      font-size: 10px;
+      color: #9ca3af;
+      text-align: center;
+      padding-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .cal-day {
+      height: 32px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+
+    .cal-day.done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .cal-day.done:hover {
+      background: #bbf7d0;
+    }
+
+    .cal-day.today {
+      background: #0B1D35;
+      color: #fff;
+    }
+
+    .cal-day.missed {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .cal-day.future {
+      background: #f9fafb;
+      color: #d1d5db;
+      cursor: default;
+    }
+
+    .nudge-banner {
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .nudge-text {
+      font-size: 12px;
+      color: #92400e;
+      flex: 1;
+      line-height: 1.5;
+    }
+
+    .nudge-btn {
+      font-size: 11px;
+      padding: 5px 12px;
+      background: #FF6B2B;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .stat {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .stat-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 2px;
+    }
+
+    .stat-lbl {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .stat-delta {
+      font-size: 11px;
+      color: #166534;
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    .stat-delta.warn {
+      color: #92400e;
+    }
+
+    /* Target bars */
+    .target-item {
+      margin-bottom: 12px;
+    }
+
+    .ti-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .ti-label {
+      font-size: 13px;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    .ti-val {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .ti-bar {
+      height: 7px;
+      background: #f3f4f6;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .ti-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.4s;
+    }
+
+    /* ── STUDY CIRCLE ── */
+    .optin-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .ob-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .ob-text h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e40af;
+      margin-bottom: 2px;
+    }
+
+    .ob-text p {
+      font-size: 12px;
+      color: #3b82f6;
+      line-height: 1.5;
+    }
+
+    .ob-right {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    /* Circle member rows */
+    .circle-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      transition: background 0.12s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .circle-row:hover {
+      background: #f9fafb;
+    }
+
+    .circle-row.me {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .circle-rank {
+      font-size: 13px;
+      font-weight: 700;
+      color: #374151;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .circle-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .circle-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .circle-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #111;
+    }
+
+    .circle-sub {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .circle-improvement {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #166534;
+      white-space: nowrap;
+    }
+
+    .circle-improvement.down {
+      color: #991b1b;
+    }
+
+    .circle-streak {
+      font-size: 12px;
+      font-weight: 600;
+      color: #FF6B2B;
+      white-space: nowrap;
+    }
+
+    .circle-bar-wrap {
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .circle-bar {
+      height: 5px;
+      background: #f3f4f6;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .circle-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: #4BA3E3;
+      transition: width 0.3s;
+    }
+
+    .toggle-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .tog {
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      border: 1px solid #e0e4ea;
+      color: #6b7280;
+      cursor: pointer;
+      background: #fff;
+      font-family: inherit;
+      transition: all 0.12s;
+    }
+
+    .tog.on {
+      background: #0B1D35;
+      color: #fff;
+      border-color: #0B1D35;
+    }
+
+    /* ── SET TARGETS ── */
+    .target-form-card {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+
+    .tf-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .subject-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .ssl-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #111;
+      width: 140px;
+      flex-shrink: 0;
+    }
+
+    .ssl-range {
+      flex: 1;
+    }
+
+    .ssl-val {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0B1D35;
+      min-width: 68px;
+      text-align: right;
+    }
+
+    .day-checks {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .day-check {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .day-check input {
+      accent-color: #0B1D35;
+    }
+
+    .day-check label {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .vis-opts {
+      display: flex;
+      gap: 8px;
+    }
+
+    .vis-opt {
+      flex: 1;
+      border: 1px solid #e8ecf0;
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .vis-opt:hover {
+      border-color: #93c5fd;
+    }
+
+    .vis-opt.on {
+      border-color: #4BA3E3;
+      background: #eff6ff;
+    }
+
+    .vis-opt h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 3px;
+    }
+
+    .vis-opt p {
+      font-size: 11px;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+
+    .nudge-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nc-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid #e8ecf0;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .nc-item:hover {
+      background: #f9fafb;
+    }
+
+    .nc-item.checked {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .nc-item input {
+      accent-color: #166534;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .nc-item label {
+      font-size: 13px;
+      color: #374151;
+      cursor: pointer;
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    /* ── STUDY CIRCLE FULL PAGE ── */
+    .friend-add-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .friend-add-row input {
+      flex: 1;
+      border: 1px solid #e0e4ea;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .friend-add-row input:focus {
+      border-color: #4BA3E3;
+    }
+
+    .privacy-note {
+      background: #f8fafc;
+      border: 1px solid #e8ecf0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .pn-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pn-text {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    .pn-text strong {
+      color: #374151;
+    }
+
+    .improvement-legend {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .il-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .il-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    /* ── FEEDBACK PAGE ── */
+    .reward-banner {
+      background: #0B1D35;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .rb-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .rb-text h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .rb-text p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.5;
+    }
+
+    .rb-badge {
+      background: #4BA3E3;
+      color: #0B1D35;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-top: 7px;
+      display: inline-block;
+    }
+
+    .unlock-progress-bar {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .up-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 7px;
+    }
+
+    .up-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #166534;
+    }
+
+    .up-count {
+      font-size: 13px;
+      font-weight: 700;
+      color: #166534;
+    }
+
+    .up-bar {
+      height: 8px;
+      background: #dcfce7;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .up-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: #16a34a;
+      transition: width 0.5s;
+    }
+
+    .up-sub {
+      font-size: 11px;
+      color: #166534;
+      margin-top: 6px;
+    }
+
+    .fb-step {
+      margin-bottom: 14px;
+    }
+
+    .fb-step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 3px;
+    }
+
+    .fb-step-sub {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 14px;
+    }
+
+    .rating-row {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .r-btn {
+      font-size: 12px;
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1px solid #e0e4ea;
+      color: #374151;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.12s;
+      font-family: inherit;
+    }
+
+    .r-btn:hover {
+      border-color: #9ca3af;
+    }
+
+    .r-btn.on {
+      background: #0B1D35;
+      color: #fff;
+      border-color: #0B1D35;
+    }
+
+    .form-group {
+      margin-bottom: 13px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group textarea,
+    .form-group input[type=text],
+    .form-group select {
+      width: 100%;
+      border: 1px solid #e0e4ea;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: #111;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-group textarea:focus,
+    .form-group input[type=text]:focus,
+    .form-group select:focus {
+      border-color: #4BA3E3;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .pain-check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 13px;
+    }
+
+    .pc-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border: 1px solid #e8ecf0;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .pc-item:hover {
+      background: #f9fafb;
+    }
+
+    .pc-item.checked {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .pc-item input {
+      accent-color: #166534;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .pc-item label {
+      font-size: 13px;
+      color: #374151;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .step-save-btn {
+      font-size: 12px;
+      padding: 7px 16px;
+      background: #0B1D35;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+
+    .step-save-btn:hover {
+      opacity: 0.85;
+    }
+
+    .step-save-btn.saved {
+      background: #166534;
+    }
+
+    /* Modal */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-bg.open {
+      display: flex;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 16px;
+      padding: 26px;
+      width: 440px;
+      max-width: 90vw;
+    }
+
+    .modal-emoji {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .modal h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    .modal p {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .modal-cancel {
+      font-size: 13px;
+      padding: 8px 16px;
+      border: 1px solid #e0e4ea;
+      border-radius: 8px;
+      background: #fff;
+      color: #374151;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .modal-confirm {
+      font-size: 13px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: inherit;
+      color: #fff;
+    }
+
+    /* ── PAGE 1: SHORTLIST ── */
+    .search-hero {
+      background: #0B1D35;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
+    }
+
+    .sh-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .sh-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 14px;
+    }
+
+    .sh-search-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sh-search-row input,
+    .sh-search-row select {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-size: 13px;
+      color: #fff;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .sh-search-row input {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .sh-search-row input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .sh-search-row select {
+      min-width: 140px;
+    }
+
+    .sh-search-row select option {
+      background: #0B1D35;
+      color: #fff;
+    }
+
+    .sh-search-row input:focus,
+    .sh-search-row select:focus {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .sh-btn {
+      background: #4BA3E3;
+      color: #0B1D35;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .fchip {
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid #e0e4ea;
+      color: #6b7280;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.12s;
+      font-family: inherit;
+    }
+
+    .fchip:hover {
+      border-color: #9ca3af;
+    }
+
+    .fchip.on {
+      background: #0B1D35;
+      color: #fff;
+      border-color: #0B1D35;
+    }
+
+    .results-count {
+      font-size: 12px;
+      color: #6b7280;
+      margin-left: auto;
+    }
+
+    /* Uni cards grid */
+    .uni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .uni-card {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 14px;
+      padding: 16px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+
+    .uni-card:hover {
+      border-color: #93c5fd;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .uni-card.saved {
+      border-color: #4BA3E3;
+    }
+
+    .uni-card.reach {
+      border-left: 3px solid #dc2626;
+      border-radius: 0 14px 14px 0;
+    }
+
+    .uni-card.target {
+      border-left: 3px solid #d97706;
+      border-radius: 0 14px 14px 0;
+    }
+
+    .uni-card.likely {
+      border-left: 3px solid #16a34a;
+      border-radius: 0 14px 14px 0;
+    }
+
+    .uc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 8px;
+    }
+
+    .uc-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .uc-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .uc-location {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .uc-save {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 2px;
+      line-height: 1;
+    }
+
+    .uc-divider {
+      height: 1px;
+      background: #f3f4f6;
+      margin: 10px 0;
+    }
+
+    .uc-req-label {
+      font-size: 10px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .uc-subjects {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .uc-subj-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .uc-subj-name {
+      font-size: 11px;
+      color: #374151;
+    }
+
+    .uc-score {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .uc-score.met {
+      color: #166534;
+    }
+
+    .uc-score.gap {
+      color: #dc2626;
+    }
+
+    .uc-score.close {
+      color: #d97706;
+    }
+
+    .uc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .uc-overall {
+      font-size: 12px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .uc-overall span {
+      color: #6b7280;
+      font-weight: 400;
+    }
+
+    .add-btn {
+      font-size: 11px;
+      padding: 5px 12px;
+      background: #0B1D35;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+
+    .add-btn:hover {
+      opacity: 0.85;
+    }
+
+    .add-btn.added {
+      background: #166534;
+    }
+
+    /* My shortlist */
+    .shortlist-empty {
+      text-align: center;
+      padding: 32px;
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    .sl-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid #e8ecf0;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .sl-row:hover {
+      background: #f9fafb;
+    }
+
+    .sl-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .sl-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .sl-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #111;
+    }
+
+    .sl-meta {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .sl-gap {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .sl-gap.on-track {
+      color: #166534;
+    }
+
+    .sl-gap.needs-work {
+      color: #dc2626;
+    }
+
+    .sl-gap.almost {
+      color: #d97706;
+    }
+
+    /* ── PAGE 2: STUDY PLAN ── */
+    .plan-hero {
+      background: #0B1D35;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .ph-left h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .ph-left p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .ph-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .ph-stat {
+      text-align: center;
+    }
+
+    .ph-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: #4BA3E3;
+    }
+
+    .ph-lbl {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 1px;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .subject-plan-card {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .spc-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .spc-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .spc-target {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .spc-bar-wrap {
+      margin-bottom: 8px;
+    }
+
+    .spc-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .spc-bar {
+      height: 7px;
+      background: #f3f4f6;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .spc-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s;
+    }
+
+    .spc-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .spc-action {
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: #f0f4f8;
+      color: #374151;
+      border: 1px solid #e0e4ea;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.12s;
+    }
+
+    .spc-action:hover {
+      background: #e8ecf0;
+    }
+
+    .spc-action.active {
+      background: #dbeafe;
+      color: #1e40af;
+      border-color: #93c5fd;
+    }
+
+    /* Weekly plan table */
+    .week-plan {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .week-plan th {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6b7280;
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .week-plan td {
+      padding: 10px;
+      border-bottom: 1px solid #f9fafb;
+      vertical-align: top;
+    }
+
+    .week-plan tr:last-child td {
+      border-bottom: none;
+    }
+
+    .wp-day {
+      font-weight: 600;
+      color: #111;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .wp-sessions {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .wp-session {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .wp-session:hover {
+      background: #f3f4f6;
+    }
+
+    .wp-session.done {
+      background: #f0fdf4;
+    }
+
+    .wp-session-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .wp-session-text {
+      font-size: 11px;
+      color: #374151;
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    .wp-session-time {
+      font-size: 10px;
+      color: #9ca3af;
+      white-space: nowrap;
+    }
+
+    .wp-session-check {
+      font-size: 13px;
+    }
+
+    .plan-summary-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .ps {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .ps-num {
+      font-size: 20px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 2px;
+    }
+
+    .ps-lbl {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .ps-delta {
+      font-size: 11px;
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    /* ── PAGE 3: GAP ANALYSIS ── */
+    .gap-intro {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+    }
+
+    .gi-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e40af;
+      margin-bottom: 3px;
+    }
+
+    .gi-sub {
+      font-size: 12px;
+      color: #3b82f6;
+      line-height: 1.5;
+    }
+
+    .gap-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .gap-table th {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6b7280;
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid #f3f4f6;
+      background: #f8fafc;
+    }
+
+    .gap-table td {
+      padding: 12px;
+      border-bottom: 1px solid #f9fafb;
+      vertical-align: middle;
+    }
+
+    .gap-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .gap-table tr:hover td {
+      background: #fafbfc;
+    }
+
+    .gt-subject {
+      font-size: 13px;
+      font-weight: 500;
+      color: #111;
+    }
+
+    .gt-current {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .score-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .score-bar {
+      flex: 1;
+      height: 6px;
+      background: #f3f4f6;
+      border-radius: 3px;
+      overflow: hidden;
+      min-width: 60px;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.4s;
+    }
+
+    .score-label {
+      font-size: 11px;
+      font-weight: 600;
+      min-width: 28px;
+    }
+
+    .gt-required {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .gt-gap {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .gt-gap.met {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .gt-gap.close {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .gt-gap.needs {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .gt-resource {
+      font-size: 11px;
+      color: #185FA5;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* Uni comparison */
+    .uni-compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .uc2 {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 12px;
+      padding: 14px;
+      position: relative;
+    }
+
+    .uc2.top-choice {
+      border-color: #4BA3E3;
+      border-width: 2px;
+    }
+
+    .uc2-badge {
+      position: absolute;
+      top: -8px;
+      left: 14px;
+      font-size: 10px;
+      padding: 2px 9px;
+      border-radius: 6px;
+      background: #4BA3E3;
+      color: #0B1D35;
+      font-weight: 700;
+    }
+
+    .uc2-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 2px;
+    }
+
+    .uc2-course {
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    .uc2-req {
+      font-size: 12px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .uc2-sub {
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .feasibility-bar {
+      height: 7px;
+      background: #f3f4f6;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .feasibility-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s;
+    }
+
+    .uc2-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .uc2-pct {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0B1D35;
+      color: #fff;
+      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.25s;
+      pointer-events: none;
+      z-index: 999;
+      max-width: 320px;
+      line-height: 1.4;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #050505;
+      /* Deep cinematic dark */
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hardware Accelerated Cursor Glow */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(75, 163, 227, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      transform: translate3d(-50%, -50%, 0);
+      will-change: transform;
+    }
+
+    /* Master Navigation (Apple Glass Dock) */
+    .glass-dock {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translate3d(-50%, 0, 0);
+      background: rgba(25, 25, 30, 0.4);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 32px;
+      padding: 8px;
+      display: flex;
+      gap: 8px;
+      z-index: 9999;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .dock-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, background, color;
+    }
+
+    .dock-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .dock-btn.active {
+      background: #4BA3E3;
+      color: #0B1D35;
+      box-shadow: 0 4px 15px rgba(75, 163, 227, 0.3);
+    }
+
+    /* View Container */
+    .master-view {
+      display: none;
+      opacity: 0;
+      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: opacity, transform;
+      min-height: 100vh;
+      position: relative;
+      z-index: 10;
+    }
+
+    .master-view.active {
+      display: block;
+    }
+
+    /* Light Theme Reset for Prototypes */
+    .light-theme-wrapper {
+      background: #f0f4f8;
+      color: #111;
+    }
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+   LANDING PAGE STYLES (Apple Glass & Digital Brutalism blend)
+════════════════════════════════════════════════════════════ */
+    #landing-view {
+      padding: 80px 24px 120px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(75, 163, 227, 0.1);
+      border: 1px solid rgba(75, 163, 227, 0.2);
+      color: #4BA3E3;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 6vw, 84px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    /* Glass Panels */
+    .glass-panel {
+      background: rgba(25, 25, 30, 0.3);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-panel h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .glass-panel p {
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Prototype Showcase Grid */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .showcase-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .showcase-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(75, 163, 227, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .showcase-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(75, 163, 227, 0.4);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(75, 163, 227, 0.1);
+    }
+
+    .showcase-card:hover::before {
+      opacity: 1;
+    }
+
+    .sc-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .sc-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .sc-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.5;
+    }
+
+    /* Empty Section */
+    .empty-section {
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      margin-bottom: 40px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ════════════════════════════════════════════════════════════
+   PROTOTYPE SHARED & SCOPED CSS (From original files)
+════════════════════════════════════════════════════════════ */
+    .p-scope .topbar {
+      background: #0B1D35;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .p-scope .logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+
+    .p-scope .logo span {
+      color: #4BA3E3;
+    }
+
+    .p-scope .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #4BA3E3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #0B1D35;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .p-scope .top-nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    .p-scope .tnav {
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .p-scope .tnav:hover {
+      color: #fff;
+    }
+
+    .p-scope .tnav.on {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .p-scope .card {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .p-scope .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .p-scope .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111;
+    }
+
+    .p-scope .card-sub-title,
+    .p-scope .card-sub {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    .p-scope .divider {
+      height: 1px;
+      background: #f3f4f6;
+      margin: 14px 0;
+    }
+
+    .p-scope .tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .p-scope .tag-green {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .p-scope .tag-blue {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .p-scope .tag-orange {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+
+    .p-scope .tag-gray {
+      background: #f3f4f6;
+      color: #4b5563;
+      border: 0.5px solid #e0e4ea;
+    }
+
+    .p-scope .tag-yellow {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .p-scope .btn-dark {
+      background: #0B1D35;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .p-scope .btn-accent {
+      background: #4BA3E3;
+      color: #0B1D35;
+      border: none;
+      border-radius: 10px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .p-scope .btn-outline {
+      font-size: 12px;
+      padding: 6px 14px;
+      background: transparent;
+      color: #374151;
+      border: 1px solid #e0e4ea;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .p-scope .btn-full {
+      width: 100%;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+
+    .p-scope .text-link {
+      font-size: 12px;
+      color: #185FA5;
+      cursor: pointer;
+      font-weight: 500;
+      border: none;
+      background: transparent;
+    }
+
+    /* P2 Specific (Resource Library) */
+    #p2-view .app {
+      background: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #p2-view .search-wrap {
+      flex: 1;
+      max-width: 400px;
+      position: relative;
+    }
+
+    #p2-view .search-wrap input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 0.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 7px 14px 7px 36px;
+      font-size: 13px;
+      color: #fff;
+      outline: none;
+    }
+
+    #p2-view .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.4;
+      font-size: 13px;
+    }
+
+    #p2-view .body {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      flex: 1;
+    }
+
+    #p2-view .sidebar {
+      border-right: 1px solid #e8ecf0;
+      padding: 14px;
+      background: #f8fafc;
+      overflow-y: auto;
+    }
+
+    #p2-view .slabel {
+      font-size: 10px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin: 14px 0 6px;
+    }
+
+    #p2-view .subject-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #374151;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    #p2-view .subject-btn.on {
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 500;
+    }
+
+    #p2-view .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    #p2-view .sitem {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 2px;
+      font-size: 12px;
+      color: #374151;
+      cursor: pointer;
+    }
+
+    #p2-view .rep-box {
+      background: #0B1D35;
+      border-radius: 10px;
+      padding: 11px 13px;
+      margin-top: 14px;
+    }
+
+    #p2-view .main {
+      padding: 18px;
+      min-width: 0;
+      overflow-y: auto;
+    }
+
+    #p2-view .tab-row {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #e8ecf0;
+      margin-bottom: 16px;
+      overflow-x: auto;
+    }
+
+    #p2-view .tab {
+      font-size: 13px;
+      padding: 8px 14px;
+      color: #6b7280;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+
+    #p2-view .tab.on {
+      color: #185FA5;
+      border-bottom-color: #185FA5;
+      font-weight: 500;
+    }
+
+    #p2-view .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    #p2-view .stat {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 9px 11px;
+    }
+
+    #p2-view .filter-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    #p2-view .fchip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 0.5px solid #d1d5db;
+      color: #6b7280;
+      cursor: pointer;
+      background: #fff;
+    }
+
+    #p2-view .fchip.on {
+      background: #0B1D35;
+      color: #fff;
+      border-color: #0B1D35;
+    }
+
+    #p2-view .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #p2-view .cicon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* P1 Specific (Study Streak) */
+    #p1-view .page {
+      display: none;
+      padding: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    #p1-view .page.on {
+      display: block;
+    }
+
+    #p1-view .streak-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FF6B2B;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+    }
+
+    #p1-view .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    #p1-view .cal-day {
+      height: 32px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    #p1-view .cal-day.done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    #p1-view .cal-day.today {
+      background: #0B1D35;
+      color: #fff;
+    }
+
+    #p1-view .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    #p1-view .stat {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    #p1-view .circle-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      cursor: pointer;
+    }
+
+    #p1-view .circle-row.me {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    /* P3 Specific (Uni Goals) */
+    #p3-view .page {
+      display: none;
+      padding: 24px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    #p3-view .page.on {
+      display: block;
+    }
+
+    #p3-view .search-hero {
+      background: #0B1D35;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
+    }
+
+    #p3-view .sh-search-row input,
+    #p3-view .sh-search-row select {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-size: 13px;
+      color: #fff;
+      outline: none;
+    }
+
+    #p3-view .uni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    #p3-view .uni-card {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    #p3-view .uni-card.reach {
+      border-left: 3px solid #dc2626;
+      border-radius: 0 14px 14px 0;
+    }
+
+    #p3-view .uni-card.target {
+      border-left: 3px solid #d97706;
+      border-radius: 0 14px 14px 0;
+    }
+
+    #p3-view .uni-card.likely {
+      border-left: 3px solid #16a34a;
+      border-radius: 0 14px 14px 0;
+    }
+
+    #p3-view .uc-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    #p3-view .gap-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #p3-view .gap-table th {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6b7280;
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid #f3f4f6;
+      background: #f8fafc;
+    }
+
+    #p3-view .gap-table td {
+      padding: 12px;
+      border-bottom: 1px solid #f9fafb;
+    }
+
+    /* Shared Overlays (Toasts & Modals) scoped to prevent clash */
+    .p-toast {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      background: #0B1D35;
+      color: #fff;
+      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translate3d(0, 8px, 0);
+      transition: all 0.25s;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .p-toast.show {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .p-modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p-modal-bg.open {
+      display: flex;
+    }
+
+    .p-modal {
+      background: #fff;
+      border-radius: 16px;
+      padding: 26px;
+      width: 440px;
+      max-width: 90vw;
+      color: #111;
+    }
+
+    /* P3 specific extras */
+    .usp-pill {
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 12px;
+      background: rgba(75, 163, 227, 0.15);
+      color: #4BA3E3;
+      border: 1px solid rgba(75, 163, 227, 0.3);
+      font-weight: 600;
+    }
+
+    .uc-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .uc-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .uc-location {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .uc-save {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 2px;
+      line-height: 1;
+    }
+
+    .uc-divider {
+      height: 1px;
+      background: #f3f4f6;
+      margin: 10px 0;
+    }
+
+    .uc-req-label {
+      font-size: 10px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .uc-subjects {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    #p3-view .target-form-card {
+      background: #fff;
+      border: 1px solid #e8ecf0;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+
+    #p3-view .tf-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    #p3-view .btn-danger {
+      background: #fee2e2;
+      color: #991b1b;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <nav class="glass-dock">
+    <button class="dock-btn active" onclick="switchView('landing', this)">Home</button>
+    <button class="dock-btn" onclick="switchView('p2', this)">Library</button>
+    <button class="dock-btn" onclick="switchView('p1', this)">Study Streak</button>
+    <button class="dock-btn" onclick="switchView('p3', this)">Uni Goals</button>
+  </nav>
+
+  <main id="landing-view" class="master-view active">
+    <div class="hero-section">
+      <div class="hero-tag">System Architecture Upgraded</div>
+      <h1 class="hero-title">SortMyPrep.<br>Clarity in the Chaos.</h1>
+      <p class="hero-sub">The IB journey is fragmented across countless drives, scattered notes, and uncalibrated
+        expectations. We built a high-performance ecosystem to centralize your workflow.</p>
+    </div>
+
+    <div class="glass-panel">
+      <h2>Why this exists</h2>
+      <p>Students waste hundreds of hours managing the meta-work of studying rather than actually learning. SortMyPrep
+        implements a production-ready architecture to unify data-driven gap analysis, community-curated resources, and
+        intelligent study streaks. By replacing friction with liquid-smooth UI and hardware-accelerated workflows, we
+        keep you focused on what matters: the score.</p>
+    </div>
+
+
+
+
+    <div class="glass-panel" style="background: transparent; border: none; padding: 0; box-shadow: none;">
+      <h2>Explore the Architecture</h2>
+      <div class="showcase-grid">
+        <div class="showcase-card" onclick="switchView('p2', document.querySelectorAll('.dock-btn')[1])">
+          <div class="sc-icon">📚</div>
+          <div class="sc-title">Resource Library</div>
+          <div class="sc-desc">A highly optimized repository for past papers and verified notes. Find exactly what you
+            need with robust filtering and reputation-based community trust.</div>
+        </div>
+        <div class="showcase-card" onclick="switchView('p1', document.querySelectorAll('.dock-btn')[2])">
+          <div class="sc-icon">🔥</div>
+          <div class="sc-title">Study Streak & Circle</div>
+          <div class="sc-desc">Accountability engineered through gamification. Track daily progress, set precise
+            targets, and engage in opt-in, rank-based study circles without toxic comparison.</div>
+        </div>
+        <div class="showcase-card" onclick="switchView('p3', document.querySelectorAll('.dock-btn')[3])">
+          <div class="sc-icon">🎯</div>
+          <div class="sc-title">University Goal Planner</div>
+          <div class="sc-desc">Reverse-engineer your study plan. Cross-reference real-time predicted grades against
+            international university requirements with automated gap analysis.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <main id="p2-view" class="master-view light-theme-wrapper p-scope">
+    <div class="app">
+      <div class="topbar">
+        <div class="logo">Sort<span>MyPrep</span></div>
+        <div class="search-wrap">
+          <span class="search-icon">&#128269;</span>
+          <input id="p2-searchInput" placeholder="Search past papers, notes, topics..." oninput="p2_filterCards()" />
+        </div>
+        <div class="nav top-nav">
+          <div class="tnav on" onclick="p2_setNav(this)">Library</div>
+          <div class="tnav" onclick="p2_setNav(this)">My saves</div>
+          <div class="tnav" onclick="p2_setNav(this)">Progress</div>
+        </div>
+        <div class="avatar" title="Aryan Shah">AS</div>
+      </div>
+
+      <div class="body">
+        <div class="sidebar">
+          <div class="slabel">Board</div>
+          <label class="sitem"><input type="checkbox" checked onchange="p2_filterCards()" /> IB Diploma</label>
+          <label class="sitem"><input type="checkbox" onchange="p2_filterCards()" /> IGCSE</label>
+
+          <div class="slabel">Subject</div>
+          <div class="subject-btn on" onclick="p2_setSubject(this,'Maths AA HL','#378ADD')">
+            <div class="dot" style="background:#378ADD;"></div>Maths AA HL
+          </div>
+          <div class="subject-btn" onclick="p2_setSubject(this,'Physics HL','#639922')">
+            <div class="dot" style="background:#639922;"></div>Physics HL
+          </div>
+          <div class="subject-btn" onclick="p2_setSubject(this,'Chemistry SL','#1D9E75')">
+            <div class="dot" style="background:#1D9E75;"></div>Chemistry SL
+          </div>
+
+          <div class="divider"></div>
+          <div class="slabel">Resource type</div>
+          <label class="sitem"><input type="checkbox" checked onchange="p2_filterCards()" data-p2-type="paper" /> Past
+            papers</label>
+          <label class="sitem"><input type="checkbox" checked onchange="p2_filterCards()" data-p2-type="notes" />
+            Student notes</label>
+
+          <div class="divider"></div>
+          <div class="slabel">Year</div>
+          <label class="sitem"><input type="checkbox" checked onchange="p2_filterCards()" data-p2-year="2024" />
+            2024</label>
+          <label class="sitem"><input type="checkbox" checked onchange="p2_filterCards()" data-p2-year="2023" />
+            2023</label>
+
+          <div class="rep-box">
+            <div style="font-size:12px;font-weight:500;color:#fff;">Aryan Shah</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.4);">Class of 2025</div>
+            <div style="display:flex;align-items:baseline;gap:4px;margin-top:4px;">
+              <div style="font-size:22px;font-weight:600;color:#4BA3E3;" id="p2-repScore">1,240</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.4);">rep pts</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main">
+          <div style="font-size:12px;color:#6b7280;margin-bottom:12px;">Library / IB Diploma / <span
+              id="p2-currentSubject" style="color:#111;">Maths AA HL</span></div>
+          <div class="tab-row">
+            <div class="tab on" onclick="p2_setTab(this,'all')">All resources</div>
+            <div class="tab" onclick="p2_setTab(this,'paper')">Past papers</div>
+            <div class="tab" onclick="p2_setTab(this,'notes')">Student notes</div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div style="font-size:18px;font-weight:600;" id="p2-stat-total">82</div>
+              <div style="font-size:10px;color:#6b7280;">Total resources</div>
+            </div>
+            <div class="stat">
+              <div style="font-size:18px;font-weight:600;">100%</div>
+              <div style="font-size:10px;color:#6b7280;">Free to access</div>
+            </div>
+          </div>
+
+          <div class="filter-row" id="p2-filterRow">
+            <div class="fchip on" onclick="p2_setChip(this,'all')">All</div>
+            <div class="fchip" onclick="p2_setChip(this,'2024')">2024</div>
+            <div class="fchip" onclick="p2_setChip(this,'calculus')">Calculus</div>
+            <button class="btn-accent" style="margin-left:auto;padding:6px 14px;font-size:12px;"
+              onclick="p2_showToast('Contribute modal opened')">+ Contribute notes</button>
+          </div>
+
+          <div class="card-list" id="p2-cardList"></div>
+        </div>
+      </div>
+    </div>
+    <div class="p-toast" id="p2-toast"></div>
+  </main>
+
+
+  <main id="p1-view" class="master-view light-theme-wrapper p-scope">
+    <div class="topbar">
+      <div class="logo">Sort<span>MyPrep</span></div>
+      <div class="top-nav">
+        <button class="tnav on" onclick="p1_goPage('dashboard',this)">Dashboard</button>
+        <button class="tnav" onclick="p1_goPage('targets',this)">My targets</button>
+        <button class="tnav" onclick="p1_goPage('circle',this)">Study circle</button>
+        <button class="tnav" onclick="p1_goPage('feedback',this)">Feedback</button>
+      </div>
+      <button class="streak-pill" onclick="p1_goPage('dashboard',document.querySelector('#p1-view .tnav'))">
+        🔥 <span id="p1-topStreakNum">12</span>
+      </button>
+      <div class="avatar">AS</div>
+    </div>
+
+    <div class="page on" id="p1-page-dashboard">
+      <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+        <div>
+          <h1 style="font-size:20px;font-weight:700;margin-bottom:4px;">Good morning, Aryan 👋</h1>
+          <p style="font-size:13px;color:#6b7280;">You're on a <strong>12-day streak</strong> — don't break it today.
+          </p>
+        </div>
+        <button class="btn-dark" onclick="p1_goPage('targets',document.querySelectorAll('#p1-view .tnav')[1])">Edit
+          targets</button>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <div class="card-title">Study streak — April 2026</div>
+            <div class="card-sub-title">Each green square is a day you studied</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:24px;font-weight:700;color:#FF6B2B;">🔥 <span id="p1-streakNum">12</span></div>
+            <div class="card-sub-title">day streak</div>
+          </div>
+        </div>
+        <div class="cal-grid" id="p1-calGrid"></div>
+        <div
+          style="background:#fef3c7;border-radius:10px;padding:10px;margin-top:12px;display:flex;gap:10px;align-items:center;"
+          id="p1-nudgeBanner">
+          <span>⚡</span>
+          <div style="font-size:12px;color:#92400e;flex:1;">You haven't logged a study session today. Keep your streak
+            alive!</div>
+          <button class="btn-accent" style="padding:5px 12px;font-size:11px;" onclick="p1_markToday()">Log today
+            ✓</button>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div style="font-size:22px;font-weight:700;" id="p1-dashStreak">12</div>
+          <div style="font-size:11px;color:#6b7280;">Day streak</div>
+        </div>
+        <div class="stat">
+          <div style="font-size:22px;font-weight:700;">47h</div>
+          <div style="font-size:11px;color:#6b7280;">Studied this month</div>
+        </div>
+        <div class="stat">
+          <div style="font-size:22px;font-weight:700;">#2</div>
+          <div style="font-size:11px;color:#6b7280;">Study circle rank</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="card-title">Study circle (Mini)</div>
+          <button class="btn-outline" onclick="p1_goPage('circle',document.querySelectorAll('#p1-view .tnav')[2])">See
+            full circle</button>
+        </div>
+        <div id="p1-miniCircle"></div>
+      </div>
+    </div>
+
+    <div class="page" id="p1-page-targets">
+      <div class="page-header">
+        <h2>Set your weekly targets</h2>
+        <p>You decide what to study and how much. SortMyPrep will nudge you if you fall behind — but only in ways you
+          choose below.</p>
+      </div>
+      <div class="target-form-card">
+        <label class="tf-label">Hours per subject this week</label>
+        <div id="p1-subjectSliders"></div>
+        <div class="divider"></div>
+        <label class="tf-label">Which days will you study?</label>
+        <div class="day-checks" style="margin-bottom:4px;">
+          <div class="day-check"><input type="checkbox" id="p1-d-mon" checked /><label for="p1-d-mon">Mon</label></div>
+          <div class="day-check"><input type="checkbox" id="p1-d-tue" checked /><label for="p1-d-tue">Tue</label></div>
+          <div class="day-check"><input type="checkbox" id="p1-d-wed" checked /><label for="p1-d-wed">Wed</label></div>
+          <div class="day-check"><input type="checkbox" id="p1-d-thu" checked /><label for="p1-d-thu">Thu</label></div>
+          <div class="day-check"><input type="checkbox" id="p1-d-fri" checked /><label for="p1-d-fri">Fri</label></div>
+          <div class="day-check"><input type="checkbox" id="p1-d-sat" /><label for="p1-d-sat">Sat</label></div>
+          <div class="day-check"><input type="checkbox" id="p1-d-sun" /><label for="p1-d-sun">Sun</label></div>
+        </div>
+        <div class="divider"></div>
+        <label class="tf-label">Study circle visibility — who sees your progress?</label>
+        <div class="vis-opts" style="margin-bottom:4px;">
+          <div class="vis-opt" onclick="p1_setVis(this)">
+            <h4>Private</h4>
+            <p>Only you see your targets and streak.</p>
+          </div>
+          <div class="vis-opt on" onclick="p1_setVis(this)">
+            <h4>Study circle</h4>
+            <p>Friends see your improvement — not raw hours.</p>
+          </div>
+          <div class="vis-opt" onclick="p1_setVis(this)">
+            <h4>Public</h4>
+            <p>Any SortMyPrep student can see your streak.</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <label class="tf-label">Nudge settings</label>
+        <div class="nudge-checks">
+          <div class="nc-item checked"
+            onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
+            <input type="checkbox" checked onclick="event.stopPropagation()" />
+            <label>Send me a reminder at 8pm if I haven't studied today</label>
+            <span class="tag tag-yellow">Nudge</span>
+          </div>
+          <div class="nc-item checked"
+            onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
+            <input type="checkbox" checked onclick="event.stopPropagation()" />
+            <label>Show a streak-break warning when I open the app without logging</label>
+            <span class="tag tag-yellow">Nudge</span>
+          </div>
+          <div class="nc-item"
+            onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
+            <input type="checkbox" onclick="event.stopPropagation()" />
+            <label>Let my study circle see when my streak breaks</label>
+            <span class="tag tag-blue">Social</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn-full btn-dark" onclick="p1_saveTargets()">Save targets</button>
+    </div>
+
+    <div class="page" id="p1-page-circle">
+      <div style="margin-bottom:20px;">
+        <h2 style="font-size:18px;font-weight:700;margin-bottom:4px;">Study circle</h2>
+        <p style="font-size:13px;color:#6b7280;">Ranked by most improved this week.</p>
+      </div>
+      <div class="card">
+        <div id="p1-fullCircle"></div>
+      </div>
+    </div>
+
+    <div class="page" id="p1-page-feedback">
+      <div class="page-header">
+        <h2>Share your feedback</h2>
+        <p>Help us improve SortMyPrep. Complete all 3 steps to unlock a free doubt-clearing session with a high-scoring
+          IB alum.</p>
+      </div>
+      <div class="reward-banner">
+        <div class="rb-icon">🎁</div>
+        <div class="rb-text">
+          <h3>Unlock a free alum doubt-clearing session</h3>
+          <p>Complete all 3 feedback steps to unlock a free live 30-minute session with a verified IB alum who scored
+            40+. Only available during the free trial.</p>
+          <span class="rb-badge" id="p1-rewardBadge">0 / 3 steps completed</span>
+        </div>
+      </div>
+      <div class="unlock-progress-bar">
+        <div class="up-top"><span class="up-title">Progress to unlock</span><span class="up-count" id="p1-unlockCount">0
+            / 3</span></div>
+        <div class="up-bar">
+          <div class="up-fill" id="p1-unlockBar" style="width:0%;"></div>
+        </div>
+        <div class="up-sub" id="p1-unlockSub">Complete all 3 steps and submit to claim your free session</div>
+      </div>
+      <div class="card fb-step" id="p1-fb-card-1">
+        <div class="card-top" style="margin-bottom:10px;">
+          <div>
+            <div class="fb-step-title">Step 1 — Rate your experience</div>
+            <div class="fb-step-sub">How would you rate SortMyPrep so far?</div>
+          </div>
+          <span class="tag tag-gray" id="p1-step1-tag">Not saved</span>
+        </div>
+        <div class="rating-row" id="p1-ratingBtns">
+          <button class="r-btn" onclick="p1_setRating(this)">😞 Poor</button>
+          <button class="r-btn" onclick="p1_setRating(this)">😐 Okay</button>
+          <button class="r-btn" onclick="p1_setRating(this)">🙂 Good</button>
+          <button class="r-btn" onclick="p1_setRating(this)">😊 Great</button>
+          <button class="r-btn" onclick="p1_setRating(this)">🤩 Amazing</button>
+        </div>
+        <div class="form-group"><label>What do you like most?</label><textarea
+            placeholder="e.g. The streak feature keeps me motivated..."></textarea></div>
+        <button class="step-save-btn" id="p1-step1-btn" onclick="p1_saveStep(1)">Save step 1</button>
+      </div>
+      <div class="card fb-step" id="p1-fb-card-2">
+        <div class="card-top" style="margin-bottom:10px;">
+          <div>
+            <div class="fb-step-title">Step 2 — What's not working?</div>
+            <div class="fb-step-sub">Honest feedback helps us fix the right things first.</div>
+          </div>
+          <span class="tag tag-gray" id="p1-step2-tag">Not saved</span>
+        </div>
+        <div class="pain-check-list">
+          <div class="pc-item"
+            onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
+            <input type="checkbox" onclick="event.stopPropagation()" /><label>The streak feels too
+              pressuring</label><span class="tag tag-gray">UX</span></div>
+          <div class="pc-item"
+            onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
+            <input type="checkbox" onclick="event.stopPropagation()" /><label>Study circle makes me anxious</label><span
+              class="tag tag-gray">Social</span></div>
+          <div class="pc-item"
+            onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
+            <input type="checkbox" onclick="event.stopPropagation()" /><label>I don't know what to study
+              next</label><span class="tag tag-gray">Planning</span></div>
+        </div>
+        <div class="form-group"><label>Anything else?</label><textarea
+            placeholder="Tell us what's not working..."></textarea></div>
+        <button class="step-save-btn" id="p1-step2-btn" onclick="p1_saveStep(2)">Save step 2</button>
+      </div>
+      <div class="card fb-step" id="p1-fb-card-3">
+        <div class="card-top" style="margin-bottom:10px;">
+          <div>
+            <div class="fb-step-title">Step 3 — One thing you'd add</div>
+            <div class="fb-step-sub">If you could add one feature, what would it be?</div>
+          </div>
+          <span class="tag tag-gray" id="p1-step3-tag">Not saved</span>
+        </div>
+        <div class="form-group"><label>Feature idea</label><input type="text"
+            placeholder="e.g. A daily quiz based on my weak topics..." /></div>
+        <div class="form-group"><label>How urgently?</label>
+          <select>
+            <option>Nice to have</option>
+            <option>Would use every week</option>
+            <option>Would pay for this</option>
+            <option>Dealbreaker without it</option>
+          </select>
+        </div>
+        <button class="step-save-btn" id="p1-step3-btn" onclick="p1_saveStep(3)">Save step 3</button>
+      </div>
+      <button class="btn-full btn-accent" style="color:#0B1D35;" onclick="p1_submitFeedback()">Submit all feedback &amp;
+        claim session</button>
+    </div>
+
+    <div class="p-toast" id="p1-toast"></div>
+  </main>
+
+
+  <!--<main id="p3-view" class="master-view light-theme-wrapper p-scope">
+    <div class="topbar">
+      <div class="logo">Sort<span>MyPrep</span></div>
+      <div class="top-nav">
+        <button class="tnav on" onclick="p3_goPage('shortlist',this)">University shortlist</button>
+        <button class="tnav" onclick="p3_goPage('plan',this)">My study plan</button>
+        <button class="tnav" onclick="p3_goPage('gaps',this)">Gap analysis</button>
+      </div>
+      <div class="avatar">AS</div>
+    </div>
+ 
+    <div class="page on" id="p3-page-shortlist">
+      <div class="search-hero">
+        <div style="font-size:16px;font-weight:700;margin-bottom:4px;color:#fff;">Find universities that match your IB
+          scores</div>
+        <div class="sh-search-row" style="margin-top:14px;">
+          <input id="p3-uniSearch" placeholder="Search university..." oninput="p3_renderUnis()" />
+          <select id="p3-categoryFilter" onchange="p3_renderUnis()">
+            <option value="">All categories</option>
+            <option value="reach">Reach</option>
+            <option value="target">Target</option>
+          </select>
+        </div>
+      </div>
+ 
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:16px;">
+        <div class="uni-grid" id="p3-uniGrid"></div>
+        <div>
+          <div class="card" style="position:sticky;top:68px;">
+            <div class="card-top">
+              <div class="card-title">My shortlist</div>
+              <div class="card-sub" id="p3-shortlistCount">0 added</div>
+            </div>
+            <div id="p3-myShortlist"></div>
+            <button class="btn-full btn-accent" style="margin-top:14px;"
+              onclick="p3_goPage('plan',document.querySelectorAll('#p3-view .tnav')[1])">Generate plan →</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  <!-- ══════════════════════════════════════
+     PAGE 1 — UNIVERSITY SHORTLIST
+══════════════════════════════════════ -->
+  <main id="p3-view" class="master-view light-theme-wrapper p-scope">
+    <div class="topbar">
+      <div class="logo">Sort<span>MyPrep</span></div>
+      <div class="top-nav">
+        <button class="tnav on" onclick="p3_goPage('shortlist',this)">University shortlist</button>
+        <button class="tnav" onclick="p3_goPage('plan',this)">My study plan</button>
+        <button class="tnav" onclick="p3_goPage('gaps',this)">Gap analysis</button>
+      </div>
+      <div class="usp-pill">New feature</div>
+      <div class="avatar">AS</div>
+    </div>
+    <div class="page on" id="p3-page-shortlist">
+
+      <!-- Search hero -->
+      <div class="search-hero">
+        <div class="sh-title">Find universities that match your IB scores</div>
+        <div class="sh-sub">Search by university, course, or country — see exact IB requirements and how your current
+          grades compare</div>
+        <div class="sh-search-row">
+          <input id="uniSearch" placeholder="Search university or course..." oninput="filterUnis()" />
+          <select id="countryFilter" onchange="filterUnis()">
+            <option value="">All countries</option>
+            <option value="UK">United Kingdom</option>
+            <option value="US">United States</option>
+            <option value="Canada">Canada</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Singapore">Singapore</option>
+          </select>
+          <select id="categoryFilter" onchange="filterUnis()">
+            <option value="">All categories</option>
+            <option value="reach">Reach</option>
+            <option value="target">Target</option>
+            <option value="likely">Likely</option>
+          </select>
+          <button class="sh-btn" onclick="filterUnis()">Search</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:16px;">
+        <div>
+          <div class="filter-row">
+            <button class="fchip on" onclick="setFChip(this,'all')">All</button>
+            <button class="fchip" onclick="setFChip(this,'reach')">Reach</button>
+            <button class="fchip" onclick="setFChip(this,'target')">Target</button>
+            <button class="fchip" onclick="setFChip(this,'likely')">Likely</button>
+            <span class="results-count" id="resultsCount">8 universities</span>
+          </div>
+          <div class="uni-grid" id="uniGrid"></div>
+        </div>
+
+        <!-- My shortlist sidebar -->
+        <div>
+          <div class="card" style="position:sticky;top:68px;">
+            <div class="card-top">
+              <div>
+                <div class="card-title">My shortlist</div>
+                <div class="card-sub" id="shortlistCount">0 universities added</div>
+              </div>
+              <button class="btn-accent" style="font-size:12px;padding:6px 14px;"
+                onclick="p3_goPage('plan',document.querySelectorAll('#p3-view .tnav')[1])">Generate plan →</button>
+            </div>
+            <div id="myShortlist">
+              <div class="shortlist-empty">Add universities from the left to build your shortlist</div>
+            </div>
+            <div class="divider"></div>
+            <div style="font-size:11px;color:#6b7280;line-height:1.6;">
+              Your study plan will be reverse-engineered from the highest-requirement university in your shortlist,
+              ensuring you're prepared for your most ambitious choice.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     PAGE 2 — STUDY PLAN
+══════════════════════════════════════ -->
+    <div class="page" id="p3-page-plan">
+
+      <div class="page-header">
+        <h2>Your reverse-engineered study plan</h2>
+        <p>Built from the requirements of your most ambitious shortlisted university. Hit these targets and every other
+          university on your list becomes achievable.</p>
+      </div>
+
+      <!-- Plan hero -->
+      <div class="plan-hero">
+        <div class="ph-left">
+          <h3>Target: Imperial College London — Engineering</h3>
+          <p>IB requirement: 39 overall · HL Maths 7 · HL Physics 7 · HL Chemistry 6</p>
+        </div>
+        <div class="ph-stats">
+          <div class="ph-stat">
+            <div class="ph-num">38</div>
+            <div class="ph-lbl">Current predicted</div>
+          </div>
+          <div class="ph-stat">
+            <div class="ph-num">+1</div>
+            <div class="ph-lbl">Points needed</div>
+          </div>
+          <div class="ph-stat">
+            <div class="ph-num">11</div>
+            <div class="ph-lbl">Weeks to exams</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="plan-summary-row">
+        <div class="ps">
+          <div class="ps-num">18h</div>
+          <div class="ps-lbl">Recommended study this week</div>
+          <div class="ps-delta" style="color:#166534;">↑ 3h more than last week</div>
+        </div>
+        <div class="ps">
+          <div class="ps-num">4/6</div>
+          <div class="ps-lbl">Subjects on track</div>
+          <div class="ps-delta" style="color:#92400e;">Maths & Physics need focus</div>
+        </div>
+        <div class="ps">
+          <div class="ps-num">78%</div>
+          <div class="ps-lbl">Imperial feasibility score</div>
+          <div class="ps-delta" style="color:#166534;">↑ +6% from last month</div>
+        </div>
+      </div>
+
+      <!-- Per-subject plans -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-title">Subject targets — what you need to achieve</div>
+          <button class="text-link" onclick="p3_goPage('gaps',document.querySelectorAll('#p3-view .tnav')[2])">View full
+            gap
+            analysis</button>
+        </div>
+        <div class="plan-grid" id="subjectPlanGrid"></div>
+      </div>
+
+      <!-- Weekly session plan -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-title">This week's study sessions</div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn-outline"
+              onclick="toast('Plan regenerated based on your current gaps')">Regenerate</button>
+            <button class="btn-dark" style="font-size:12px;padding:6px 14px;"
+              onclick="toast('Plan exported to your calendar')">Export to calendar</button>
+          </div>
+        </div>
+        <table class="week-plan" id="weekPlan"></table>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     PAGE 3 — GAP ANALYSIS
+══════════════════════════════════════ -->
+    <div class="page" id="p3-page-gaps">
+
+      <div class="page-header">
+        <h2>Gap analysis — where you stand vs your universities</h2>
+        <p>Your current predicted grades compared against every university on your shortlist. Red means action needed
+          now.
+        </p>
+      </div>
+
+      <!-- Uni comparison -->
+      <div class="card">
+        <div class="card-top">
+          <div class="card-title">Shortlisted universities — feasibility overview</div>
+          <button class="text-link" onclick="p3_goPage('shortlist',document.querySelector('#p3-view .tnav'))">Edit
+            shortlist</button>
+        </div>
+        <div class="uni-compare-grid" id="uniCompareGrid"></div>
+      </div>
+
+      <!-- Subject gap table -->
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <div class="card-title">Subject-by-subject gap breakdown</div>
+            <div class="card-sub">Based on your highest-requirement university: Imperial College London</div>
+          </div>
+          <span class="tag tag-blue">Updated today</span>
+        </div>
+        <div class="gap-intro">
+          <div class="gi-title">How to read this table</div>
+          <div class="gi-sub">Green = you already meet this requirement. Yellow = you're within 1 grade, focus here. Red
+            =
+            significant gap, prioritised in your study plan automatically.</div>
+        </div>
+        <table class="gap-table" id="gapTable"></table>
+      </div>
+    </div>
+
+    <!--<div class="page" id="p3-page-plan">
+    <div style="margin-bottom:20px;">
+      <h2 style="font-size:18px;font-weight:700;">Your reverse-engineered study plan</h2>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">This week's sessions</div>
+      </div>
+      <div id="p3-weekPlan"></div>
+    </div>
+  </div>-->
+
+
+    <!--<div class="page" id="p3-page-gaps">
+      <div style="margin-bottom:20px;">
+        <h2 style="font-size:18px;font-weight:700;">Gap analysis</h2>
+      </div>
+      <div class="card">
+        <table class="gap-table" id="p3-gapTable"></table>
+      </div>
+    </div>
+ 
+    <div class="p-toast" id="p3-toast"></div> -->
+    <!-- Modal -->
+    <div class="modal-bg" id="modal">
+      <div class="modal">
+        <div class="modal-emoji" id="mEmoji">🎓</div>
+        <h2 id="mTitle"></h2>
+        <p id="mBody"></p>
+        <div class="modal-actions">
+          <button class="modal-cancel" onclick="closeModal()">Close</button>
+          <button class="modal-confirm" id="mConfirm" onclick="closeModal()">Got it</button>
+        </div>
+      </div>
+    </div>
+    <div class="p-toast" id="p3-toast"></div>
+  </main>
+
+
+  <script>
+    // --- MASTER LOGIC ---
+    function switchView(viewId, btnEl) {
+      // Update dock buttons
+      document.querySelectorAll('.dock-btn').forEach(btn => btn.classList.remove('active'));
+      btnEl.classList.add('active');
+
+      // Switch views with hardware accelerated transition handling
+      document.querySelectorAll('.master-view').forEach(v => {
+        v.classList.remove('active');
+      });
+
+      const target = document.getElementById(viewId === 'landing' ? 'landing-view' : viewId + '-view');
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Optimized Cursor Glow using requestAnimationFrame
+    const cursor = document.getElementById('cursorGlow');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let cursorX = mouseX;
+    let cursorY = mouseY;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      // Smooth interpolation
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      cursor.style.transform = `translate3d(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%), 0)`;
+      requestAnimationFrame(animateCursor);
+    }
+    requestAnimationFrame(animateCursor);
+
+
+    // --- P2 LOGIC (Library) ---
+    const p2_cards = [
+      { id: 1, type: 'notes', year: '2023', tags: ['calculus'], title: 'Complete Calculus notes', meta: ['Maths AA HL'], ctags: [{ cls: 'tag-blue', txt: 'Verified' }], icon: 'N', iconBg: '#dcfce7', iconColor: '#166534', contrib: { name: 'Meera Kapoor' } },
+      { id: 2, type: 'paper', year: '2024', tags: ['paper1'], title: 'Maths AA HL — Paper 1 — May 2024', meta: ['Past paper'], ctags: [{ cls: 'tag-blue', txt: 'Official' }], icon: 'P', iconBg: '#dbeafe', iconColor: '#1e40af', contrib: { name: 'SortMyPrep' } },
+      { id: 3, type: 'paper', year: '2024', tags: ['paper2'], title: 'Maths AA HL — Paper 2 — May 2024', meta: ['Past paper'], ctags: [{ cls: 'tag-blue', txt: 'Official' }], icon: 'P', iconBg: '#dbeafe', iconColor: '#1e40af', contrib: { name: 'SortMyPrep' } }
+    ];
+    let p2_tab = 'all', p2_chip = 'all';
+
+    function p2_showToast(msg) {
+      const t = document.getElementById('p2-toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function p2_filterCards() {
+      const list = document.getElementById('p2-cardList');
+      const search = document.getElementById('p2-searchInput').value.toLowerCase();
+
+      const filtered = p2_cards.filter(c => {
+        if (p2_tab !== 'all' && c.type !== p2_tab) return false;
+        if (p2_chip !== 'all' && p2_chip === '2024' && c.year !== '2024') return false;
+        if (search && !c.title.toLowerCase().includes(search)) return false;
+        return true;
+      });
+
+      list.innerHTML = filtered.map(c => `
+    <div class="card" style="margin-bottom:0;">
+      <div style="display:flex; gap:10px; align-items:center;">
+        <div class="cicon" style="background:${c.iconBg};color:${c.iconColor};width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:600;">${c.icon}</div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:600;">${c.title}</div>
+          <div style="font-size:11px;color:#6b7280;margin-top:2px;">${c.meta.join(', ')} · By ${c.contrib.name}</div>
+        </div>
+        <button class="btn-dark" style="padding:6px 12px;font-size:11px;" onclick="p2_showToast('Downloading...')">Download</button>
+      </div>
+    </div>`).join('');
+    }
+
+    function p2_setNav(el) { document.querySelectorAll('#p2-view .tnav').forEach(n => n.classList.remove('on')); el.classList.add('on'); }
+    function p2_setTab(el, tab) { document.querySelectorAll('#p2-view .tab').forEach(t => t.classList.remove('on')); el.classList.add('on'); p2_tab = tab; p2_filterCards(); }
+    function p2_setChip(el, chip) { document.querySelectorAll('#p2-view .fchip').forEach(c => c.classList.remove('on')); el.classList.add('on'); p2_chip = chip; p2_filterCards(); }
+    function p2_setSubject(el, name) { document.querySelectorAll('#p2-view .subject-btn').forEach(b => b.classList.remove('on')); el.classList.add('on'); document.getElementById('p2-currentSubject').textContent = name; p2_filterCards(); }
+    p2_filterCards();
+
+
+    // --- P1 LOGIC (Study Streak) ---
+    let p1_streak = 12;
+    const p1_members = [
+      { init: 'AS', bg: '#dbeafe', color: '#1e40af', name: 'Aryan Shah (you)', sub: 'Maths AA HL', streak: 12, imp: +18, me: true },
+      { init: 'MK', bg: '#dcfce7', color: '#166534', name: 'Meera Kapoor', sub: 'History HL', streak: 18, imp: +32, me: false },
+      { init: 'RN', bg: '#f3e8ff', color: '#6b21a8', name: 'Rohit Nair', sub: 'Physics HL', streak: 9, imp: +9, me: false },
+      { init: 'TR', bg: '#fce7f3', color: '#9d174d', name: 'Tara Rodrigues', sub: 'Biology HL', streak: 6, imp: -4, me: false },
+      { init: 'SP', bg: '#fef3c7', color: '#92400e', name: 'Sana Patel', sub: 'Chemistry SL', streak: 3, imp: 0, me: false }
+    ];
+
+    function p1_toast(msg) {
+      const t = document.getElementById('p1-toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function p1_goPage(id, navEl) {
+      document.querySelectorAll('#p1-view .page').forEach(p => p.classList.remove('on'));
+      document.getElementById('p1-page-' + id).classList.add('on');
+      document.querySelectorAll('#p1-view .tnav').forEach(n => n.classList.remove('on'));
+      navEl.classList.add('on');
+    }
+
+    function p1_buildCal() {
+      const grid = document.getElementById('p1-calGrid');
+      let html = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(l => `<div style="font-size:10px;color:#9ca3af;text-align:center;">${l}</div>`).join('');
+      for (let i = 1; i <= 30; i++) {
+        let cls = 'cal-day ' + (i === 13 ? 'today' : (i < 13 && i >= 13 - 12 ? 'done' : ''));
+        html += `<div class="${cls}" style="background:${i === 13 ? '#0B1D35' : i < 13 && i >= 1 ? '#dcfce7' : '#f3f4f6'};color:${i === 13 ? '#fff' : i < 13 && i >= 1 ? '#166534' : '#9ca3af'};">${i}</div>`;
+      }
+      grid.innerHTML = html;
+    }
+
+    function p1_markToday() {
+      p1_streak++;
+      document.getElementById('p1-streakNum').textContent = p1_streak;
+      document.getElementById('p1-topStreakNum').textContent = p1_streak;
+      document.getElementById('p1-dashStreak').textContent = p1_streak;
+      document.getElementById('p1-nudgeBanner').style.display = 'none';
+      p1_toast('🔥 Streak updated!');
+    }
+
+    function p1_buildCircle() {
+      const medals = ['🥇', '🥈', '🥉', '4', '5'];
+      const sorted = [...p1_members].sort((a, b) => b.imp - a.imp);
+      const html = sorted.map((m, i) => {
+        const impColor = m.imp > 0 ? '#166534' : m.imp < 0 ? '#dc2626' : '#d97706';
+        const impLabel = m.imp > 0 ? '↑ +' + m.imp + '%' : m.imp < 0 ? '↓ ' + m.imp + '%' : '→ 0%';
+        return `<div class="circle-row ${m.me ? 'me' : ''}">
+          <div style="font-size:13px;font-weight:700;width:24px;text-align:center;">${i < 3 ? medals[i] : i + 1}</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:${m.bg};color:${m.color};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">${m.init}</div>
+          <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;">${m.name}</div><div style="font-size:11px;color:#6b7280;">${m.sub}</div></div>
+          <div style="font-size:12px;font-weight:600;color:#FF6B2B;white-space:nowrap;">🔥 ${m.streak}d</div>
+          <div style="font-size:12px;font-weight:600;color:${impColor};min-width:60px;text-align:right;">${impLabel}</div>
+        </div>`;
+      }).join('');
+      document.getElementById('p1-miniCircle').innerHTML = html;
+      document.getElementById('p1-fullCircle').innerHTML = html;
+    }
+    // Full subject data for P1 sliders
+    const p1_subjects = [
+      { name: 'Maths AA HL', target: 3 },
+      { name: 'Physics HL', target: 2 },
+      { name: 'Chemistry SL', target: 1.5 },
+      { name: 'English A', target: 1 },
+      { name: 'Economics SL', target: 1 },
+    ];
+
+    function p1_buildSliders() {
+      document.getElementById('p1-subjectSliders').innerHTML = p1_subjects.map((s, i) => `
+        <div class="subject-slider-row">
+          <div class="ssl-name">${s.name}</div>
+          <input type="range" class="ssl-range" min="0" max="10" step="1" value="${s.target}"
+            oninput="document.getElementById('p1-sv${i}').textContent=this.value+'h / week'"/>
+          <span class="ssl-val" id="p1-sv${i}">${s.target}h / week</span>
+        </div>`).join('');
+    }
+
+    function p1_setVis(el) {
+      document.querySelectorAll('#p1-view .vis-opt').forEach(v => v.classList.remove('on'));
+      el.classList.add('on');
+    }
+
+    function p1_saveTargets() {
+      p1_toast('🎯 Targets saved! Your study circle can now see your improvement.');
+      setTimeout(() => p1_goPage('dashboard', document.querySelector('#p1-view .tnav')), 1500);
+    }
+
+    let p1_stepsCompleted = new Set();
+
+    function p1_setRating(el) {
+      document.querySelectorAll('#p1-ratingBtns .r-btn').forEach(b => b.classList.remove('on'));
+      el.classList.add('on');
+    }
+
+    function p1_saveStep(n) {
+      p1_stepsCompleted.add(n);
+      const pct = Math.round((p1_stepsCompleted.size / 3) * 100);
+      document.getElementById('p1-unlockBar').style.width = pct + '%';
+      document.getElementById('p1-unlockCount').textContent = p1_stepsCompleted.size + ' / 3';
+      document.getElementById('p1-rewardBadge').textContent = p1_stepsCompleted.size + ' / 3 steps completed';
+      document.getElementById('p1-step' + n + '-tag').textContent = 'Saved ✓';
+      document.getElementById('p1-step' + n + '-tag').className = 'tag tag-green';
+      const btn = document.getElementById('p1-step' + n + '-btn');
+      btn.textContent = 'Saved ✓';
+      btn.classList.add('saved');
+      document.getElementById('p1-fb-card-' + n).style.borderColor = '#86efac';
+      if (p1_stepsCompleted.size === 3) {
+        document.getElementById('p1-unlockSub').textContent = '🎉 All steps done — submit below to claim your free session!';
+        document.getElementById('p1-unlockSub').style.fontWeight = '600';
+      }
+      p1_toast('Step ' + n + ' saved ✓');
+    }
+
+    function p1_submitFeedback() {
+      if (p1_stepsCompleted.size < 3) { p1_toast('Complete all 3 steps first'); return; }
+      p1_toast('🎉 Free session unlocked! Check your email for booking link.');
+    }
+
+    p1_buildCal();
+    p1_buildCircle();
+    p1_buildSliders();
+
+
+    // --- P3 LOGIC (Uni Goals) ---
+    /* ══ DATA ══ */
+    const MY_SCORES = {
+      'Maths AA HL': 6, 'Physics HL': 5, 'Chemistry SL': 6,
+      'English A': 6, 'Economics SL': 7, 'History SL': 6
+    };
+
+    const UNIVERSITIES = [
+      {
+        id: 1, logo: 'IC', logoBg: '#dbeafe', logoC: '#1e40af', name: 'Imperial College London', course: 'MEng Engineering', country: 'UK', overall: 39, category: 'reach',
+        subjects: [{ s: 'Maths AA HL', r: 7 }, { s: 'Physics HL', r: 7 }, { s: 'Chemistry SL', r: 6 }], saved: false, feasibility: 78
+      },
+      {
+        id: 2, logo: 'UC', logoBg: '#dcfce7', logoC: '#166534', name: 'University of Cambridge', course: 'BA Engineering', country: 'UK', overall: 42, category: 'reach',
+        subjects: [{ s: 'Maths AA HL', r: 7 }, { s: 'Physics HL', r: 7 }, { s: 'Chemistry SL', r: 7 }], saved: false, feasibility: 45
+      },
+      {
+        id: 3, logo: 'ED', logoBg: '#f3e8ff', logoC: '#6b21a8', name: 'University of Edinburgh', course: 'BEng Mechanical Eng', country: 'UK', overall: 37, category: 'target',
+        subjects: [{ s: 'Maths AA HL', r: 6 }, { s: 'Physics HL', r: 6 }, { s: 'Chemistry SL', r: 5 }], saved: false, feasibility: 88
+      },
+      {
+        id: 4, logo: 'TU', logoBg: '#fef3c7', logoC: '#92400e', name: 'TU Delft', course: 'BSc Aerospace Eng', country: 'Netherlands', overall: 36, category: 'target',
+        subjects: [{ s: 'Maths AA HL', r: 6 }, { s: 'Physics HL', r: 6 }, { s: 'Chemistry SL', r: 5 }], saved: false, feasibility: 90
+      },
+      {
+        id: 5, logo: 'UT', logoBg: '#ffedd5', logoC: '#9a3412', name: 'University of Toronto', course: 'BASc Engineering', country: 'Canada', overall: 36, category: 'target',
+        subjects: [{ s: 'Maths AA HL', r: 6 }, { s: 'Physics HL', r: 6 }], saved: false, feasibility: 91
+      },
+      {
+        id: 6, logo: 'NU', logoBg: '#dcfce7', logoC: '#166534', name: 'NUS Singapore', course: 'BEng Industrial', country: 'Singapore', overall: 38, category: 'target',
+        subjects: [{ s: 'Maths AA HL', r: 7 }, { s: 'Physics HL', r: 6 }], saved: false, feasibility: 82
+      },
+      {
+        id: 7, logo: 'DU', logoBg: '#fee2e2', logoC: '#991b1b', name: 'Durham University', course: 'MEng Engineering', country: 'UK', overall: 35, category: 'likely',
+        subjects: [{ s: 'Maths AA HL', r: 6 }, { s: 'Physics HL', r: 5 }], saved: false, feasibility: 95
+      },
+      {
+        id: 8, logo: 'GW', logoBg: '#f3e8ff', logoC: '#6b21a8', name: 'George Washington Univ', course: 'BS Engineering', country: 'US', overall: 34, category: 'likely',
+        subjects: [{ s: 'Maths AA HL', r: 6 }, { s: 'Physics HL', r: 5 }], saved: false, feasibility: 96
+      },
+    ];
+
+    const SUBJECT_PLANS = [
+      { name: 'Maths AA HL', current: 6, required: 7, color: '#4BA3E3', actions: ['Past papers', 'Integration focus', 'Paper 3 prep'] },
+      { name: 'Physics HL', current: 5, required: 7, color: '#dc2626', actions: ['Topic 6 revision', 'Past papers', 'Exam technique'] },
+      { name: 'Chemistry SL', current: 6, required: 6, color: '#16a34a', actions: ['Maintain pace', 'Mock papers'] },
+      { name: 'English A', current: 6, required: null, color: '#9333ea', actions: ['Essay structure', 'IOC prep'] },
+      { name: 'Economics SL', current: 7, required: null, color: '#16a34a', actions: ['Maintain'] },
+      { name: 'History SL', current: 6, required: null, color: '#d97706', actions: ['Paper 2 essays', 'Source skills'] },
+    ];
+
+    const WEEKLY_PLAN = [
+      {
+        day: 'Monday', sessions: [
+          { subj: 'Physics HL', topic: 'Topic 6 — Circular motion', time: '2h', color: '#dc2626', done: false },
+          { subj: 'Maths AA HL', topic: 'Integration by parts — past paper Qs', time: '1.5h', color: '#4BA3E3', done: true },
+        ]
+      },
+      {
+        day: 'Tuesday', sessions: [
+          { subj: 'Chemistry SL', topic: 'Organic chemistry revision', time: '1.5h', color: '#16a34a', done: true },
+          { subj: 'English A', topic: 'IOC unseen practice', time: '1h', color: '#9333ea', done: false },
+        ]
+      },
+      {
+        day: 'Wednesday', sessions: [
+          { subj: 'Maths AA HL', topic: 'Statistics & probability — topic 4', time: '2h', color: '#4BA3E3', done: false },
+          { subj: 'Physics HL', topic: 'Past paper Paper 2 — 2023', time: '2h', color: '#dc2626', done: false },
+        ]
+      },
+      {
+        day: 'Thursday', sessions: [
+          { subj: 'Economics SL', topic: 'Macro — monetary policy', time: '1h', color: '#d97706', done: false },
+          { subj: 'History SL', topic: 'Paper 2 essay — Cold War', time: '1.5h', color: '#6b7280', done: false },
+        ]
+      },
+      {
+        day: 'Friday', sessions: [
+          { subj: 'Maths AA HL', topic: 'Mock paper 1 — timed', time: '2h', color: '#4BA3E3', done: false },
+          { subj: 'Physics HL', topic: 'Mark scheme review + mistakes log', time: '1h', color: '#dc2626', done: false },
+        ]
+      },
+      {
+        day: 'Saturday', sessions: [
+          { subj: 'Physics HL', topic: 'Topic 12 — Quantum & nuclear', time: '2h', color: '#dc2626', done: false },
+        ]
+      },
+    ];
+
+    let shortlist = new Set();
+    let activeFilter = 'all';
+    let sessionDone = new Set();
+
+    let p3_saved = new Set();
+
+    function p3_toast(msg) {
+      const t = document.getElementById('p3-toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function p3_goPage(id, navEl) {
+      document.querySelectorAll('#p3-view .page').forEach(p => p.classList.remove('on'));
+      document.getElementById('p3-page-' + id).classList.add('on');
+      document.querySelectorAll('#p3-view .tnav').forEach(n => n.classList.remove('on'));
+      navEl.classList.add('on');
+    }
+
+    /*function p3_renderUnis() {
+      const cat = document.getElementById('p3-categoryFilter').value;
+      const search = document.getElementById('p3-uniSearch').value.toLowerCase();
+ 
+      const filtered = p3_unis.filter(u => {
+        if (cat && u.cat !== cat) return false;
+        if (search && !u.name.toLowerCase().includes(search)) return false;
+        return true;
+      });
+ 
+      document.getElementById('p3-uniGrid').innerHTML = filtered.map(u => {
+        const isSaved = p3_saved.has(u.id);
+        return `
+    <div class="uni-card ${u.cat}">
+      <div style="display:flex;gap:10px;">
+        <div class="uc-logo" style="background:${u.bg};color:${u.c};">${u.logo}</div>
+        <div style="flex:1;">
+          <div style="font-size:13px;font-weight:600;">${u.name}</div>
+          <div style="font-size:11px;color:#6b7280;">${u.course} · IB ${u.pts}+</div>
+        </div>
+        <button class="btn-dark" style="font-size:11px;padding:4px 10px;background:${isSaved ? '#166534' : '#0B1D35'}" onclick="p3_toggle(${u.id})">${isSaved ? 'Added ✓' : 'Add'}</button>
+      </div>
+    </div>`;
+      }).join('');
+ 
+      document.getElementById('p3-shortlistCount').textContent = p3_saved.size + ' added';
+ 
+      if (p3_saved.size === 0) {
+        document.getElementById('p3-myShortlist').innerHTML = '<div style="font-size:12px;color:#9ca3af;padding:20px;text-align:center;">Add universities to build plan</div>';
+      } else {
+        document.getElementById('p3-myShortlist').innerHTML = [...p3_saved].map(id => {
+          let u = p3_unis.find(x => x.id === id);
+          return `<div style="font-size:13px;padding:8px;border-bottom:1px solid #f3f4f6;">${u.name}</div>`;
+        }).join('');
+      }
+    }
+ 
+    function p3_toggle(id) {
+      if (p3_saved.has(id)) { p3_saved.delete(id); p3_toast('Removed'); }
+      else { p3_saved.add(id); p3_toast('Added to shortlist'); }
+      p3_renderUnis();
+    }
+ 
+    function p3_initGaps() {
+      document.getElementById('p3-gapTable').innerHTML = `
+    <thead><tr><th>Subject</th><th>Current</th><th>Required</th><th>Gap</th></tr></thead>
+    <tbody>
+      <tr><td>Maths AA HL</td><td><div style="color:#4BA3E3;font-weight:600;">6/7</div></td><td>7</td><td><span class="tag tag-orange">1 grade</span></td></tr>
+      <tr><td>Physics HL</td><td><div style="color:#dc2626;font-weight:600;">5/7</div></td><td>7</td><td><span class="tag tag-red">2 grades</span></td></tr>
+      <tr><td>Chemistry SL</td><td><div style="color:#16a34a;font-weight:600;">6/7</div></td><td>6</td><td><span class="tag tag-green">Met</span></td></tr>
+    </tbody>
+  `;
+      document.getElementById('p3-weekPlan').innerHTML = `
+    <div style="padding:10px;border-bottom:1px solid #f3f4f6;font-size:13px;"><strong>Mon:</strong> Physics HL (Topic 6) — 2h</div>
+    <div style="padding:10px;border-bottom:1px solid #f3f4f6;font-size:13px;"><strong>Tue:</strong> Maths AA HL (Integration) — 1.5h</div>
+  `;
+    }
+ 
+    p3_renderUnis();
+    p3_initGaps(); */
+
+    function renderUnis() {
+      const search = document.getElementById('uniSearch').value.toLowerCase();
+      const country = document.getElementById('countryFilter').value;
+      const cat = document.getElementById('categoryFilter').value;
+      const filtered = UNIVERSITIES.filter(u => {
+        if (activeFilter !== 'all' && u.category !== activeFilter) return false;
+        if (cat && u.category !== cat) return false;
+        if (country && u.country !== country) return false;
+        if (search && !u.name.toLowerCase().includes(search) && !u.course.toLowerCase().includes(search)) return false;
+        return true;
+      });
+      document.getElementById('resultsCount').textContent = filtered.length + ' universit' + (filtered.length === 1 ? 'y' : 'ies');
+      document.getElementById('uniGrid').innerHTML = filtered.map(u => {
+        const catColor = u.category === 'reach' ? '#dc2626' : u.category === 'target' ? '#d97706' : '#16a34a';
+        const catLabel = u.category.charAt(0).toUpperCase() + u.category.slice(1);
+        const subjects = u.subjects.map(s => {
+          const mine = MY_SCORES[s.s] || 0;
+          const cls = mine >= s.r ? 'met' : mine >= s.r - 1 ? 'close' : 'gap';
+          const label = mine >= s.r ? '✓ ' + mine + '/' + s.r : mine + '/' + s.r + ' need (' + s.r + ')';
+          return `<div class="uc-subj-row"><span class="uc-subj-name">${s.s}</span><span class="uc-score ${cls}">${label}</span></div>`;
+        }).join('');
+        const saved = shortlist.has(u.id);
+        return `<div class="uni-card ${u.category} ${saved ? 'saved' : ''}" id="ucard-${u.id}">
+        <div class="uc-top">
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <div class="uc-logo" style="background:${u.logoBg};color:${u.logoC};">${u.logo}</div>
+            <div><div class="uc-title">${u.name}</div><div class="uc-location">${u.course} · ${u.country}</div></div>
+          </div>
+          <button class="uc-save" onclick="toggleSave(${u.id},event)" title="${saved ? 'Remove from shortlist' : 'Save to shortlist'}">${saved ? '★' : '☆'}</button>
+        </div>
+        <div style="display:flex;gap:6px;margin-bottom:8px;">
+          <span class="tag" style="background:${catColor}22;color:${catColor};">${catLabel}</span>
+          <span class="tag tag-gray">IB ${u.overall}+</span>
+          <span class="tag ${u.feasibility >= 85 ? 'tag-green' : u.feasibility >= 65 ? 'tag-yellow' : 'tag-red'}">${u.feasibility}% feasible</span>
+        </div>
+        <div class="uc-divider"></div>
+        <div class="uc-req-label">IB requirements</div>
+        <div class="uc-subjects">${subjects}</div>
+        <div class="uc-footer">
+          <span class="uc-overall">Overall: <span>${u.overall}+ points</span></span>
+          <button class="add-btn ${saved ? 'added' : ''}" onclick="toggleSave(${u.id},event)">${saved ? 'Added ✓' : '+ Add to shortlist'}</button>
+        </div>
+      </div>`;
+      }).join('');
+    }
+
+
+    function toggleSave(id, e) {
+      if (e) e.stopPropagation();
+      if (shortlist.has(id)) {
+        shortlist.delete(id);
+        toast('Removed from shortlist');
+      } else {
+        if (shortlist.size >= 6) { toast('Max 6 universities in a shortlist'); return; }
+        shortlist.add(id);
+        toast('Added to shortlist ✓');
+      }
+      renderUnis();
+      renderShortlist();
+    }
+
+    function renderShortlist() {
+      const el = document.getElementById('myShortlist');
+      document.getElementById('shortlistCount').textContent = shortlist.size + ' universit' + (shortlist.size === 1 ? 'y' : 'ies') + ' added';
+      if (!shortlist.size) { el.innerHTML = '<div class="shortlist-empty">Add universities from the left to build your shortlist</div>'; return; }
+      const unis = [...shortlist].map(id => UNIVERSITIES.find(u => u.id === id)).filter(Boolean);
+      el.innerHTML = unis.map(u => {
+        const maxGap = Math.max(...u.subjects.map(s => Math.max(0, s.r - (MY_SCORES[s.s] || 0))));
+        const gapCls = maxGap === 0 ? 'on-track' : maxGap === 1 ? 'almost' : 'needs-work';
+        const gapTxt = maxGap === 0 ? 'On track' : maxGap === 1 ? '+1 grade needed' : '+' + maxGap + ' grades needed';
+        return `<div class="sl-row">
+      <div class="sl-logo" style="background:${u.logoBg};color:${u.logoC};">${u.logo}</div>
+      <div class="sl-info"><div class="sl-name">${u.name}</div><div class="sl-meta">${u.course} · ${u.overall}+ pts</div></div>
+      <div class="sl-gap ${gapCls}">${gapTxt}</div>
+      <button class="btn-danger" onclick="toggleSave(${u.id},event)">✕</button>
+    </div>`;
+      }).join('');
+    }
+
+    function filterUnis() { renderUnis(); }
+    function setFChip(el, val) {
+      document.querySelectorAll('.fchip').forEach(c => c.classList.remove('on'));
+      el.classList.add('on');
+      activeFilter = val;
+      renderUnis();
+    }
+
+    /* ══ STUDY PLAN ══ */
+    function renderSubjectPlan() {
+      document.getElementById('subjectPlanGrid').innerHTML = SUBJECT_PLANS.map((s, i) => {
+        const pct = Math.round((s.current / 7) * 100);
+        const reqPct = s.required ? Math.round((s.required / 7) * 100) : null;
+        const gap = s.required ? s.required - s.current : 0;
+        const gapTag = gap > 1 ? 'tag-red' : gap === 1 ? 'tag-yellow' : 'tag-green';
+        const gapTxt = gap > 0 ? 'Need +' + gap + ' grade' + (gap > 1 ? 's' : '') : gap === 0 && s.required ? 'Target met' : 'No HL req';
+        const actions = s.actions.map((a, ai) => `<button class="spc-action" onclick="this.classList.toggle('active')">${a}</button>`).join('');
+        return `<div class="subject-plan-card">
+      <div class="spc-top">
+        <div class="spc-name">${s.name}</div>
+        <span class="tag ${gapTag}">${gapTxt}</span>
+      </div>
+      <div class="spc-bar-wrap">
+        <div class="spc-bar-label">
+          <span>Current: ${s.current}/7</span>
+          ${s.required ? `<span>Need: ${s.required}/7</span>` : '<span>No HL req</span>'}
+        </div>
+        <div class="spc-bar">
+          <div class="spc-fill" style="width:${pct}%;background:${s.color};"></div>
+        </div>
+        ${s.required ? `<div style="display:flex;justify-content:flex-end;margin-top:2px;"><span style="font-size:10px;color:#9ca3af;">Target: ${reqPct}%</span></div>` : ''}
+      </div>
+      <div class="spc-actions">${actions}</div>
+    </div>`;
+      }).join('');
+    }
+
+    function renderWeekPlan() {
+      const rows = WEEKLY_PLAN.map(d => {
+        const sessions = d.sessions.map((s, si) => {
+          const key = d.day + si;
+          const isDone = sessionDone.has(key);
+          return `<div class="wp-session ${isDone ? 'done' : ''}" onclick="toggleSession('${key}',this)">
+        <div class="wp-session-dot" style="background:${s.color};"></div>
+        <div class="wp-session-text"><strong>${s.subj}</strong><br>${s.topic}</div>
+        <div class="wp-session-time">${s.time}</div>
+        <div class="wp-session-check">${isDone ? '✅' : '○'}</div>
+      </div>`;
+        }).join('');
+        return `<tr><td class="wp-day">${d.day}</td><td><div class="wp-sessions">${sessions}</div></td></tr>`;
+      }).join('');
+      document.getElementById('weekPlan').innerHTML = `
+    <thead><tr><th style="width:90px;">Day</th><th>Sessions</th></tr></thead>
+    <tbody>${rows}</tbody>`;
+    }
+
+    function toggleSession(key, el) {
+      if (sessionDone.has(key)) { sessionDone.delete(key); el.classList.remove('done'); el.querySelector('.wp-session-check').textContent = '○'; }
+      else { sessionDone.add(key); el.classList.add('done'); el.querySelector('.wp-session-check').textContent = '✅'; toast('Session logged ✓ +5 streak pts'); }
+    }
+
+    /* ══ GAP ANALYSIS ══ */
+    function renderGapTable() {
+      const rows = SUBJECT_PLANS.map(s => {
+        const req = s.required || '—';
+        const gap = s.required ? s.required - s.current : 0;
+        const gapCls = gap <= 0 ? 'met' : gap === 1 ? 'close' : 'needs';
+        const gapTxt = gap <= 0 ? 'Met ✓' : gap === 1 ? '−1 grade' : '−' + gap + ' grades';
+        const pct = Math.round((s.current / 7) * 100);
+        const barColor = gap > 1 ? '#dc2626' : gap === 1 ? '#d97706' : '#16a34a';
+        return `<tr>
+      <td><div class="gt-subject">${s.name}</div></td>
+      <td>
+        <div class="score-bar-wrap">
+          <div class="score-bar"><div class="score-bar-fill" style="width:${pct}%;background:${barColor};"></div></div>
+          <span class="score-label" style="color:${barColor};">${s.current}/7</span>
+        </div>
+      </td>
+      <td><div class="gt-required">${req}</div></td>
+      <td><span class="gt-gap ${gapCls}">${gapTxt}</span></td>
+      <td><span class="gt-resource" onclick="toast('Opening '+s.name+' resources...')">View resources →</span></td>
+    </tr>`;
+      }).join('');
+      document.getElementById('gapTable').innerHTML = `
+    <thead><tr><th>Subject</th><th>Your grade</th><th>Required</th><th>Gap</th><th>Resources</th></tr></thead>
+    <tbody>${rows}</tbody>`;
+    }
+
+    function renderUniCompare() {
+      const toShow = [...shortlist].map(id => UNIVERSITIES.find(u => u.id === id)).filter(Boolean);
+      if (!toShow.length) {
+        document.getElementById('uniCompareGrid').innerHTML = '<div style="color:#9ca3af;font-size:13px;padding:12px;">No universities in your shortlist yet. <span style="color:#185FA5;cursor:pointer;" onclick="goPage(\'shortlist\',document.querySelector(\'.tnav\'))">Add some →</span></div>';
+        return;
+      }
+      const topChoice = toShow.reduce((a, b) => a.overall > b.overall ? a : b);
+      document.getElementById('uniCompareGrid').innerHTML = toShow.map(u => {
+        const isTop = u.id === topChoice.id;
+        const fColor = u.feasibility >= 85 ? '#16a34a' : u.feasibility >= 65 ? '#d97706' : '#dc2626';
+        return `<div class="uc2 ${isTop ? 'top-choice' : ''}">
+      ${isTop ? '<div class="uc2-badge">Highest req</div>' : ''}
+      <div class="uc2-name">${u.name}</div>
+      <div class="uc2-course">${u.course}</div>
+      <div class="uc2-req">IB ${u.overall}+ points required</div>
+      <div class="uc2-sub">${u.subjects.map(s => s.s + ' ' + s.r).join(' · ')}</div>
+      <div class="feasibility-bar"><div class="feasibility-fill" style="width:${u.feasibility}%;background:${fColor};"></div></div>
+      <div class="uc2-footer">
+        <span class="uc2-pct" style="color:${fColor};">${u.feasibility}% feasible</span>
+        <span class="tag ${u.category === 'reach' ? 'tag-red' : u.category === 'target' ? 'tag-yellow' : 'tag-green'}">${u.category}</span>
+      </div>
+    </div>`;
+      }).join('');
+    }
+
+    /* ══ NAVIGATION ══ */
+    function goPage(id, navEl) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+      document.getElementById('page-' + id).classList.add('on');
+      if (navEl) { document.querySelectorAll('.tnav').forEach(n => n.classList.remove('on')); navEl.classList.add('on'); }
+      if (id === 'gaps') { renderGapTable(); renderUniCompare(); }
+      window.scrollTo(0, 0);
+    }
+
+    function showModal(emoji, title, body) {
+      document.getElementById('mEmoji').textContent = emoji;
+      document.getElementById('mTitle').textContent = title;
+      document.getElementById('mBody').textContent = body;
+      document.getElementById('modal').classList.add('open');
+    }
+    function closeModal() { document.getElementById('modal').classList.remove('open'); }
+    document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
+
+    function toast(msg) {
+      const t = document.getElementById('p3-toast');
+      t.textContent = msg; t.classList.add('show');
+      clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    /* ══ P3 NAVIGATION ══ */
+    function p3_goPage(id, navEl) {
+      document.querySelectorAll('#p3-view .page').forEach(p => p.classList.remove('on'));
+      document.getElementById('p3-page-' + id).classList.add('on');
+      document.querySelectorAll('#p3-view .tnav').forEach(n => n.classList.remove('on'));
+      if (navEl) navEl.classList.add('on');
+      if (id === 'gaps') { renderGapTable(); renderUniCompare(); }
+      window.scrollTo(0, 0);
+    }
+
+    /* ══ INIT ══ */
+    renderUnis();
+    renderShortlist();
+    renderSubjectPlan();
+    renderWeekPlan();
+    renderGapTable();
+    renderUniCompare();
+  </script>
+</body>
+
+</html>
