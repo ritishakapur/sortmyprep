@@ -2019,45 +2019,46 @@
     /* Master Navigation (Apple Glass Dock) */
     .glass-dock {
       position: fixed;
-      bottom: 24px;
+      bottom: 28px;
       left: 50%;
       transform: translate3d(-50%, 0, 0);
-      background: rgba(25, 25, 30, 0.4);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(11, 17, 26, 0.7);
+      backdrop-filter: blur(32px) saturate(180%);
+      -webkit-backdrop-filter: blur(32px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 32px;
-      padding: 8px;
+      padding: 6px;
       display: flex;
-      gap: 8px;
+      gap: 4px;
       z-index: 9999;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 0.5px rgba(255, 255, 255, 0.06) inset;
     }
 
     .dock-btn {
       background: transparent;
       border: none;
-      color: rgba(255, 255, 255, 0.6);
-      padding: 10px 20px;
+      color: rgba(255, 255, 255, 0.55);
+      padding: 9px 18px;
       border-radius: 24px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      font-family: inherit;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, background, color;
+      font-family: 'Inter', inherit;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing: 0.01em;
     }
 
     .dock-btn:hover {
       color: #fff;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       transform: translateY(-2px);
     }
 
     .dock-btn.active {
       background: #4BA3E3;
       color: #0B1D35;
-      box-shadow: 0 4px 15px rgba(75, 163, 227, 0.3);
+      box-shadow: 0 4px 20px rgba(75, 163, 227, 0.35);
+      font-weight: 700;
     }
 
     /* View Container */
@@ -2093,6 +2094,20 @@
       }
     }
 
+    /* ════════════════════════════════════════════════════════════
+   LANDING PAGE — PREMIUM REDESIGN
+════════════════════════════════════════════════════════════ */
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap');
+
+    #landing-view {
+      padding: 0;
+      max-width: 100%;
+      margin: 0;
+      overflow: hidden;
+      padding-bottom: 120px;
+    }
+
+    /* ── HERO ── */
     /* ════════════════════════════════════════════════════════════
    LANDING PAGE STYLES (Apple Glass & Digital Brutalism blend)
 ════════════════════════════════════════════════════════════ */
@@ -2139,16 +2154,323 @@
       line-height: 1.6;
     }
 
-    /* Glass Panels */
+    .hero-section {
+      text-align: center;
+      padding: 100px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(75, 163, 227, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(75, 163, 227, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(75, 163, 227, 0.12) 0%, transparent 70%);
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: rgba(75, 163, 227, 0.08);
+      border: 1px solid rgba(75, 163, 227, 0.2);
+      color: #4BA3E3;
+      margin-bottom: 32px;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4BA3E3;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .cta-primary {
+      background: #4BA3E3;
+      color: #0B1D35;
+      border: none;
+      border-radius: 12px;
+      padding: 13px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .cta-primary:hover {
+      background: #7dd3f8;
+      transform: translateY(-1px);
+    }
+
+    .smi-num {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Syne', system-ui, sans-serif;
+    }
+
+    .smi-label {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .smi-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(75, 163, 227, 0.4);
+      flex-shrink: 0;
+    }
+
+
+    /* ── FEATURE CARDS ── */
+    .features-section {
+      max-width: 1160px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    .features-header {
+      margin-bottom: 40px;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    .showcase-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      padding: 32px 28px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .showcase-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(75, 163, 227, 0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .showcase-card:hover {
+      border-color: rgba(75, 163, 227, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-4px);
+    }
+
+    .showcase-card:hover::before {
+      opacity: 1;
+    }
+
+    .sc-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .sc-number {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(75, 163, 227, 0.6);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .sc-title {
+      font-family: 'Syne', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .sc-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.7;
+    }
+
+    .sc-arrow {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(75, 163, 227, 0.1);
+      border: 1px solid rgba(75, 163, 227, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #4BA3E3;
+      transition: all 0.2s;
+    }
+
+    .showcase-card:hover .sc-arrow {
+      background: #4BA3E3;
+      color: #0B1D35;
+    }
+
+    /* ── FISH EASTER EGG ── */
+    .fish-container {
+      position: fixed;
+      bottom: 80px;
+      left: -120px;
+      z-index: 9998;
+      pointer-events: none;
+      animation: swimAcross 18s linear infinite;
+    }
+
+    .fish-container.reverse {
+      animation: swimBack 22s linear infinite;
+      animation-delay: 9s;
+    }
+
+    @keyframes swimAcross {
+      0% {
+        left: -120px;
+        bottom: 80px;
+      }
+
+      25% {
+        bottom: 120px;
+      }
+
+      50% {
+        bottom: 70px;
+      }
+
+      75% {
+        bottom: 100px;
+      }
+
+      100% {
+        left: calc(100vw + 120px);
+        bottom: 80px;
+      }
+    }
+
+    @keyframes swimBack {
+      0% {
+        right: -120px;
+        left: auto;
+        bottom: 60px;
+        transform: scaleX(-1);
+      }
+
+      100% {
+        right: calc(100vw + 120px);
+        left: auto;
+        bottom: 60px;
+        transform: scaleX(-1);
+      }
+    }
+
+    .fish-svg {
+      width: 80px;
+      filter: drop-shadow(0 4px 12px rgba(75, 163, 227, 0.4));
+    }
+
+    .fish-bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(75, 163, 227, 0.3);
+      border: 1px solid rgba(75, 163, 227, 0.5);
+      animation: bubbleRise 2s ease-in infinite;
+    }
+
+    @keyframes bubbleRise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-40px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .fish-label {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: rgba(75, 163, 227, 0.7);
+      white-space: nowrap;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── GLASS PANEL (legacy kept for compat) ── */
     .glass-panel {
       background: rgba(25, 25, 30, 0.3);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 24px;
       padding: 40px;
       margin-bottom: 40px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 
     .glass-panel h2 {
@@ -2164,64 +2486,6 @@
       font-size: 16px;
     }
 
-    /* Prototype Showcase Grid */
-    .showcase-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .showcase-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 30px;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .showcase-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(75, 163, 227, 0.1) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .showcase-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(75, 163, 227, 0.4);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(75, 163, 227, 0.1);
-    }
-
-    .showcase-card:hover::before {
-      opacity: 1;
-    }
-
-    .sc-icon {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
-    .sc-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #fff;
-    }
-
-    .sc-desc {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.5);
-      line-height: 1.5;
-    }
 
     /* Empty Section */
     .empty-section {
@@ -2922,54 +3186,113 @@
   <div class="cursor-glow" id="cursorGlow"></div>
 
   <nav class="glass-dock">
-    <button class="dock-btn active" onclick="switchView('landing', this)">Home</button>
-    <button class="dock-btn" onclick="switchView('p2', this)">Library</button>
-    <button class="dock-btn" onclick="switchView('p1', this)">Study Streak</button>
-    <button class="dock-btn" onclick="switchView('p3', this)">Uni Goals</button>
+    <button class="dock-btn active" onclick="switchView('landing', this)">
+      <span style="font-size:13px;margin-right:5px;">◈</span> Home
+    </button>
+    <button class="dock-btn" onclick="switchView('p2', this)">
+      📚 Library
+    </button>
+    <button class="dock-btn" onclick="switchView('p1', this)">
+      🔥 Streak
+    </button>
+    <button class="dock-btn" onclick="switchView('p3', this)">
+      🎯 Uni Goals
+    </button>
   </nav>
 
+  <!-- FISH EASTER EGG -->
+  <div class="fish-container" id="fish1">
+    <div class="fish-label">SortMyFish 🐟</div>
+    <svg class="fish-svg" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="fishGrad" cx="40%" cy="40%">
+          <stop offset="0%" stop-color="#7dd3f8" />
+          <stop offset="100%" stop-color="#0ea5e9" />
+        </radialGradient>
+        <radialGradient id="finGrad" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#38bdf8" />
+          <stop offset="100%" stop-color="#0284c7" />
+        </radialGradient>
+      </defs>
+      <!-- Tail -->
+      <polygon points="0,30 22,15 22,45" fill="#0284c7" opacity="0.8" />
+      <!-- Body -->
+      <ellipse cx="65" cy="30" rx="42" ry="22" fill="url(#fishGrad)" />
+      <!-- Top fin -->
+      <path d="M50,8 Q65,2 80,10 L75,18 Q62,14 50,20 Z" fill="url(#finGrad)" opacity="0.9" />
+      <!-- Bottom fin -->
+      <path d="M55,52 Q65,56 75,50 L72,44 Q64,48 55,44 Z" fill="url(#finGrad)" opacity="0.7" />
+      <!-- Scales hint -->
+      <path d="M45,22 Q52,19 58,22" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" fill="none" />
+      <path d="M58,20 Q65,17 72,20" stroke="rgba(255,255,255,0.3)" stroke-width="1.2" fill="none" />
+      <path d="M45,30 Q52,27 58,30" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none" />
+      <path d="M58,28 Q65,25 72,28" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="none" />
+      <!-- Eye -->
+      <circle cx="90" cy="26" r="5" fill="rgba(255,255,255,0.9)" />
+      <circle cx="91" cy="26" r="2.5" fill="#0B1D35" />
+      <circle cx="92" cy="25" r="1" fill="rgba(255,255,255,0.8)" />
+      <!-- Mouth smile -->
+      <path d="M105,30 Q108,33 106,35" stroke="#0284c7" stroke-width="1.5" fill="none" stroke-linecap="round" />
+      <!-- Bubble -->
+      <circle cx="114" cy="20" r="3" fill="rgba(125,211,248,0.3)" stroke="rgba(125,211,248,0.6)" stroke-width="0.8" />
+      <circle cx="112" cy="13" r="2" fill="rgba(125,211,248,0.2)" stroke="rgba(125,211,248,0.5)" stroke-width="0.8" />
+    </svg>
+  </div>
+
   <main id="landing-view" class="master-view active">
+
+    <!-- HERO -->
     <div class="hero-section">
-      <div class="hero-tag">System Architecture Upgraded</div>
-      <h1 class="hero-title">SortMyPrep.<br>Clarity in the Chaos.</h1>
-      <p class="hero-sub">The IB journey is fragmented across countless drives, scattered notes, and uncalibrated
-        expectations. We built a high-performance ecosystem to centralize your workflow.</p>
-    </div>
+      <div class="hero-grid-lines"></div>
+      <div class="hero-orb"></div>
 
-    <div class="glass-panel">
-      <h2>Why this exists</h2>
-      <p>Students waste hundreds of hours managing the meta-work of studying rather than actually learning. SortMyPrep
-        implements a production-ready architecture to unify data-driven gap analysis, community-curated resources, and
-        intelligent study streaks. By replacing friction with liquid-smooth UI and hardware-accelerated workflows, we
-        keep you focused on what matters: the score.</p>
-    </div>
+      <div class="hero-eyebrow">IB exam preparation, reimagined</div>
 
+      <h1 class="hero-title">
+        Sort<span class="accent-word">My</span>Prep.<br>
+        Clarity in the Chaos.
+      </h1>
 
+      <p class="hero-sub">
+        The IB journey is fragmented across countless drives, scattered notes, and uncalibrated expectations.
+        We built a high-performance ecosystem to centralize your workflow.
+      </p>
 
+      <!-- PROTOTYPE CARDS -->
+      <div class="features-section">
+        <div class="features-header">
+          <div class="showcase-grid">
 
-    <div class="glass-panel" style="background: transparent; border: none; padding: 0; box-shadow: none;">
-      <h2>Explore the Architecture</h2>
-      <div class="showcase-grid">
-        <div class="showcase-card" onclick="switchView('p2', document.querySelectorAll('.dock-btn')[1])">
-          <div class="sc-icon">📚</div>
-          <div class="sc-title">Resource Library</div>
-          <div class="sc-desc">A highly optimized repository for past papers and verified notes. Find exactly what you
-            need with robust filtering and reputation-based community trust.</div>
+            <div class="showcase-card" onclick="switchView('p2', document.querySelectorAll('.dock-btn')[1])">
+              <span class="sc-icon">📚</span>
+              <div class="sc-number">Prototype 01</div>
+              <div class="sc-title">Resource Library</div>
+              <div class="sc-desc">Centralised past papers, mark schemes, and crowdsourced student notes — all free.
+                Alumni
+                contribute and earn reputation. Community verifies quality.</div>
+              <div class="sc-arrow">→</div>
+            </div>
+
+            <div class="showcase-card" onclick="switchView('p1', document.querySelectorAll('.dock-btn')[2])">
+              <span class="sc-icon">🔥</span>
+              <div class="sc-number">Prototype 02</div>
+              <div class="sc-title">Study Streak & Circle</div>
+              <div class="sc-desc">You set the targets. The platform holds you accountable. Opt-in study circles rank by
+                improvement — not raw hours — eliminating toxic comparison.</div>
+              <div class="sc-arrow">→</div>
+            </div>
+
+            <div class="showcase-card" onclick="switchView('p3', document.querySelectorAll('.dock-btn')[3])">
+              <span class="sc-icon">🎯</span>
+              <div class="sc-number">Prototype 03</div>
+              <div class="sc-title">University Goal Planner</div>
+              <div class="sc-desc">Pick your dream universities. We reverse-engineer a study plan from their exact IB
+                requirements. Live gap analysis shows exactly where to focus.</div>
+              <div class="sc-arrow">→</div>
+            </div>
+
+          </div>
         </div>
-        <div class="showcase-card" onclick="switchView('p1', document.querySelectorAll('.dock-btn')[2])">
-          <div class="sc-icon">🔥</div>
-          <div class="sc-title">Study Streak & Circle</div>
-          <div class="sc-desc">Accountability engineered through gamification. Track daily progress, set precise
-            targets, and engage in opt-in, rank-based study circles without toxic comparison.</div>
-        </div>
-        <div class="showcase-card" onclick="switchView('p3', document.querySelectorAll('.dock-btn')[3])">
-          <div class="sc-icon">🎯</div>
-          <div class="sc-title">University Goal Planner</div>
-          <div class="sc-desc">Reverse-engineer your study plan. Cross-reference real-time predicted grades against
-            international university requirements with automated gap analysis.</div>
-        </div>
-      </div>
-    </div>
   </main>
 
 
@@ -3266,15 +3589,18 @@
           <div class="pc-item"
             onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
             <input type="checkbox" onclick="event.stopPropagation()" /><label>The streak feels too
-              pressuring</label><span class="tag tag-gray">UX</span></div>
+              pressuring</label><span class="tag tag-gray">UX</span>
+          </div>
           <div class="pc-item"
             onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
             <input type="checkbox" onclick="event.stopPropagation()" /><label>Study circle makes me anxious</label><span
-              class="tag tag-gray">Social</span></div>
+              class="tag tag-gray">Social</span>
+          </div>
           <div class="pc-item"
             onclick="this.classList.toggle('checked');this.querySelector('input').checked=this.classList.contains('checked')">
             <input type="checkbox" onclick="event.stopPropagation()" /><label>I don't know what to study
-              next</label><span class="tag tag-gray">Planning</span></div>
+              next</label><span class="tag tag-gray">Planning</span>
+          </div>
         </div>
         <div class="form-group"><label>Anything else?</label><textarea
             placeholder="Tell us what's not working..."></textarea></div>
@@ -3318,7 +3644,7 @@
       </div>
       <div class="avatar">AS</div>
     </div>
- 
+
     <div class="page on" id="p3-page-shortlist">
       <div class="search-hero">
         <div style="font-size:16px;font-weight:700;margin-bottom:4px;color:#fff;">Find universities that match your IB
@@ -3332,7 +3658,7 @@
           </select>
         </div>
       </div>
- 
+
       <div style="display:grid;grid-template-columns:1fr 320px;gap:16px;">
         <div class="uni-grid" id="p3-uniGrid"></div>
         <div>
@@ -3566,7 +3892,7 @@
         <table class="gap-table" id="p3-gapTable"></table>
       </div>
     </div>
- 
+
     <div class="p-toast" id="p3-toast"></div> -->
     <!-- Modal -->
     <div class="modal-bg" id="modal">
@@ -3903,13 +4229,13 @@
     /*function p3_renderUnis() {
       const cat = document.getElementById('p3-categoryFilter').value;
       const search = document.getElementById('p3-uniSearch').value.toLowerCase();
- 
+
       const filtered = p3_unis.filter(u => {
         if (cat && u.cat !== cat) return false;
         if (search && !u.name.toLowerCase().includes(search)) return false;
         return true;
       });
- 
+
       document.getElementById('p3-uniGrid').innerHTML = filtered.map(u => {
         const isSaved = p3_saved.has(u.id);
         return `
@@ -3924,9 +4250,9 @@
       </div>
     </div>`;
       }).join('');
- 
+
       document.getElementById('p3-shortlistCount').textContent = p3_saved.size + ' added';
- 
+
       if (p3_saved.size === 0) {
         document.getElementById('p3-myShortlist').innerHTML = '<div style="font-size:12px;color:#9ca3af;padding:20px;text-align:center;">Add universities to build plan</div>';
       } else {
@@ -3936,13 +4262,13 @@
         }).join('');
       }
     }
- 
+
     function p3_toggle(id) {
       if (p3_saved.has(id)) { p3_saved.delete(id); p3_toast('Removed'); }
       else { p3_saved.add(id); p3_toast('Added to shortlist'); }
       p3_renderUnis();
     }
- 
+
     function p3_initGaps() {
       document.getElementById('p3-gapTable').innerHTML = `
     <thead><tr><th>Subject</th><th>Current</th><th>Required</th><th>Gap</th></tr></thead>
@@ -3957,7 +4283,7 @@
     <div style="padding:10px;border-bottom:1px solid #f3f4f6;font-size:13px;"><strong>Tue:</strong> Maths AA HL (Integration) — 1.5h</div>
   `;
     }
- 
+
     p3_renderUnis();
     p3_initGaps(); */
 
